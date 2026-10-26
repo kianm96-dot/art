@@ -481,14 +481,6 @@
    "page": "File:Juan Gris - Portrait of Pablo Picasso - Google Art Project.jpg",
    "source": "https://commons.wikimedia.org/wiki/File:Juan Gris - Portrait of Pablo Picasso - Google Art Project.jpg"
   },
-  "cubism-1": {
-   "file": "cubism-1.jpg",
-   "w": null,
-   "q": null,
-   "c": "Jean Metzinger Le goûter Tea Time 1911",
-   "page": "File:Tea time in Mauritania 2.jpg",
-   "source": "https://commons.wikimedia.org/wiki/File:Tea time in Mauritania 2.jpg"
-  },
   "cubism-2": {
    "file": "cubism-2.jpg",
    "w": null,
@@ -501,9 +493,9 @@
    "file": "cubism-3.jpg",
    "w": null,
    "q": null,
-   "c": "Robert Delaunay Tour Eiffel 1911",
-   "page": "File:Paris - The Eiffel Tower in spring - 2307.jpg",
-   "source": "https://commons.wikimedia.org/wiki/File:Paris - The Eiffel Tower in spring - 2307.jpg"
+   "c": "intitle:Delaunay intitle:Eiffel",
+   "page": "File:Robert Delaunay (1885) - Der Eiffel-Turm - 2698 - Staatliche Kunsthalle Karlsruhe.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Robert Delaunay (1885) - Der Eiffel-Turm - 2698 - Staatliche Kunsthalle Karlsruhe.jpg"
   },
   "futurism-0": {
    "file": "futurism-0.jpg",
@@ -574,10 +566,12 @@
    "file": "neoclassic-2.jpg",
    "w": "Napoleon Crossing the Alps",
    "q": null,
-   "c": "Jacques-Louis David Napoleon Crossing the Alps Malmaison",
-   "page": "File:David - Napoleon crossing the Alps - Malmaison1 detail1.jpg",
-   "source": "https://commons.wikimedia.org/wiki/File:David - Napoleon crossing the Alps - Malmaison1 detail1.jpg"
+   "c": "intitle:David intitle:Napoleon intitle:Alps -intitle:detail",
+   "page": "File:Jacques-Louis David - Napoleon Crossing the Alps - Schloss Charlottenburg.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Jacques-Louis David - Napoleon Crossing the Alps - Schloss Charlottenburg.jpg"
   }
  },
- "failed": []
+ "failed": [
+  "cubism-1 장 메챙제 〈티타임〉"
+ ]
 }
