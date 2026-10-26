@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명화 타임머신 · 미술사 양식 맞히기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#17130f; --bg2:#211b15; --panel:#2a221a; --line:#4a3c2c;
+  --gold:#d6b25e; --gold2:#f2d78f; --ink:#f4ecdf; --muted:#b8a990;
+  --ok:#5fbf7f; --bad:#e2685b; --accent:#c9853f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;}
+body{min-height:100vh;background:radial-gradient(ellipse at top,#2c2218 0%,var(--bg) 60%)}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+h1,h2,h3{font-family:"Gowun Batang",serif;margin:0}
+.hidden{display:none!important}
+
+/* ---------- 홈 ---------- */
+.hero{text-align:center;padding:34px 0 18px}
+.hero .eyebrow{color:var(--gold);letter-spacing:.3em;font-size:13px}
+.hero h1{font-size:clamp(34px,6vw,58px);color:var(--gold2);margin:8px 0 6px}
+.hero p{color:var(--muted);margin:0}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:26px 0}
+.mode{background:linear-gradient(160deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;padding:22px;text-align:left;color:var(--ink);transition:.15s}
+.mode:hover{border-color:var(--gold);transform:translateY(-2px)}
+.mode .ic{font-size:34px}
+.mode h3{font-size:22px;margin:8px 0 6px;color:var(--gold2)}
+.mode p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+.mode .best{margin-top:10px;font-size:13px;color:var(--gold)}
+.opts{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;gap:12px}
+.opt{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.opt>span{width:70px;color:var(--muted);font-size:14px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{background:transparent;border:1px solid var(--line);color:var(--ink);padding:7px 14px;border-radius:999px;font-size:14px}
+.seg button.on{background:var(--gold);color:#1d160e;border-color:var(--gold);font-weight:700}
+.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:18px;line-height:1.6}
+
+/* ---------- 퀴즈 ---------- */
+.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.pill{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:15px}
+.pill b{color:var(--gold2)}
+.spacer{flex:1}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);padding:6px 12px;border-radius:999px}
+.timer{height:8px;background:#0003;border-radius:99px;overflow:hidden;margin-bottom:12px}
+.timer i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--gold),var(--accent));transition:width .1s linear}
+.timer.low i{background:var(--bad)}
+.stage{display:grid;grid-template-columns:1fr;gap:14px}
+.frame{position:relative;background:#0c0a08;border:14px solid #6b5332;border-image:linear-gradient(135deg,#a8854a,#5a4224,#c9a45d,#4d371d) 1;box-shadow:0 18px 40px #000a, inset 0 0 0 2px #0008;display:flex;align-items:center;justify-content:center;height:min(58vh,560px);overflow:hidden}
+.frame img{max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in;opacity:0;transition:opacity .25s}
+.frame img.show{opacity:1}
+.loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted)}
+.spin{width:38px;height:38px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:sp 0.8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.flash{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:110px;pointer-events:none;opacity:0}
+.flash.go{animation:fl .7s ease}
+@keyframes fl{0%{opacity:0;transform:scale(.6)}30%{opacity:1;transform:scale(1.05)}100%{opacity:0;transform:scale(1)}}
+.q{text-align:center;font-family:"Gowun Batang",serif;font-size:20px;color:var(--gold2)}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.choice{background:var(--panel);border:2px solid var(--line);color:var(--ink);border-radius:14px;padding:14px 12px;font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;text-align:left;transition:.12s}
+.choice:hover:not(:disabled){border-color:var(--gold);background:#33291f}
+.choice .k{flex:none;width:28px;height:28px;border-radius:8px;background:#0004;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gold)}
+.choice small{display:block;font-weight:400;font-size:12.5px;color:var(--muted);margin-top:2px}
+.choice.ok{border-color:var(--ok);background:#1f3a28}
+.choice.bad{border-color:var(--bad);background:#3e1f1b}
+.choice:disabled{cursor:default}
+
+.fb{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:10px}
+.fb .head{font-size:22px;font-weight:900}
+.fb .head.ok{color:var(--ok)} .fb .head.bad{color:var(--bad)}
+.fb .work{font-size:16px}
+.fb .work b{color:var(--gold2)}
+.fb .desc{color:var(--muted);line-height:1.6;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:#0003;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:13px;color:var(--gold2)}
+.tl{display:flex;gap:3px;margin-top:4px}
+.tl i{flex:1;height:10px;border-radius:3px;background:#0005;position:relative}
+.tl i.ans{background:var(--ok)} .tl i.pick{background:var(--bad)} .tl i.inr{background:#ffffff22}
+.tl-l{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.next{justify-self:end;background:var(--gold);color:#1d160e;border:0;border-radius:12px;padding:12px 22px;font-size:17px;font-weight:900}
+
+/* ---------- 결과 ---------- */
+.result{text-align:center;padding:24px 0}
+.result .big{font-size:64px;font-weight:900;color:var(--gold2);font-family:"Gowun Batang",serif}
+.result .sub{color:var(--muted);margin-bottom:6px}
+.result .msg{font-size:20px;margin:10px 0 20px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{background:var(--gold);color:#1d160e;border:0;border-radius:12px;padding:12px 22px;font-size:16px;font-weight:900}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.review{margin-top:28px;text-align:left}
+.review h3{margin-bottom:10px;color:var(--gold2)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer}
+.rcard .th{height:130px;background:#0c0a08 center/cover no-repeat}
+.rcard .tx{padding:8px 10px;font-size:13px;line-height:1.5}
+.rcard .tx b{color:var(--gold2);font-size:14px}
+.rcard .tx .mine{color:var(--bad)}
+
+/* ---------- 도감 ---------- */
+.dexhead{display:flex;align-items:center;gap:10px;margin:6px 0 16px}
+.eras{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.era{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:12px;padding:12px 14px;text-align:left;color:var(--ink)}
+.era:hover{border-color:var(--gold);border-left-color:var(--c)}
+.era b{font-size:17px;font-family:"Gowun Batang",serif}
+.era span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.eradetail{margin-top:8px}
+.eradetail .top{border-left:6px solid var(--c);padding-left:14px;margin-bottom:14px}
+.eradetail h2{font-size:30px;color:var(--gold2)}
+.eradetail .per{color:var(--muted)}
+.eradetail p{line-height:1.7}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:14px}
+.wcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.wcard .th{height:200px;background:#0c0a08;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;cursor:zoom-in}
+.wcard .th img{max-width:100%;max-height:100%;object-fit:contain}
+.wcard .tx{padding:10px 12px;font-size:14px;line-height:1.5}
+.wcard .tx b{color:var(--gold2)}
+.wcard .tx span{color:var(--muted);font-size:13px}
+
+/* ---------- 확대 ---------- */
+.lb{position:fixed;inset:0;background:#000e;display:flex;align-items:center;justify-content:center;z-index:50;cursor:zoom-out;padding:20px}
+.lb img{max-width:100%;max-height:100%;object-fit:contain}
+
+footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
+
+@media (min-width:900px){
+  .stage{grid-template-columns:1.5fr 1fr;align-items:start}
+  .side{display:grid;gap:12px}
+  .choices{grid-template-columns:1fr}
+  .frame{height:min(72vh,640px)}
+}
+@media (max-width:520px){
+  .choice{font-size:16px;padding:12px 10px}
+  .frame{border-width:9px;height:46vh}
+  .opt>span{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 홈 -->
+  <section id="home">
+    <div class="hero">
+      <div class="eyebrow">ART HISTORY QUIZ</div>
+      <h1>명화 타임머신</h1>
+      <p>그림 한 점을 보고, 어느 시대·양식인지 맞혀 보세요!</p>
+    </div>
+
+    <div class="opts">
+      <div class="opt"><span>범위</span>
+        <div class="seg" data-key="range">
+          <button data-v="all" class="on">전체 (고딕~추상)</button>
+          <button data-v="old">르네상스 ~ 19세기 전반</button>
+          <button data-v="new">19세기 후반 ~ 20세기</button>
+        </div>
+      </div>
+      <div class="opt"><span>난이도</span>
+        <div class="seg" data-key="diff">
+          <button data-v="easy" class="on">쉬움 · 시기 표시</button>
+          <button data-v="hard">어려움 · 이웃 양식끼리, 시기 숨김</button>
+        </div>
+      </div>
+      <div class="opt"><span>문제 수</span>
+        <div class="seg" data-key="count">
+          <button data-v="10" class="on">10문제</button>
+          <button data-v="20">20문제</button>
+          <button data-v="30">30문제</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modes">
+      <button class="mode" data-mode="quiz">
+        <div class="ic">🖼️</div><h3>차근차근 퀴즈</h3>
+        <p>한 문제당 20초. 답하면 작품과 양식 해설이 나와요. 빨리 맞힐수록, 연속으로 맞힐수록 점수 UP!</p>
+        <div class="best" id="best-quiz"></div>
+      </button>
+      <button class="mode" data-mode="attack">
+        <div class="ic">⚡</div><h3>60초 타임어택</h3>
+        <p>60초 동안 최대한 많이! 맞히면 +1점, 틀리면 3초 감점. 해설은 끝나고 몰아서 봐요.</p>
+        <div class="best" id="best-attack"></div>
+      </button>
+      <button class="mode" data-mode="dex">
+        <div class="ic">📚</div><h3>양식 도감</h3>
+        <p>시대별 특징과 대표 작품을 먼저 공부해요. 게임 전 수업 자료로 띄워 쓰기 좋아요.</p>
+      </button>
+    </div>
+    <p class="note">키보드: 1~4 보기 선택 · Enter 다음 문제 · 그림 클릭하면 크게 보기<br>
+      그림은 위키미디어 공용의 저작권 만료(퍼블릭 도메인) 작품입니다.</p>
+  </section>
+
+  <!-- 퀴즈 -->
+  <section id="quiz" class="hidden">
+    <div class="topbar">
+      <div class="pill" id="q-prog"></div>
+      <div class="pill">점수 <b id="q-score">0</b></div>
+      <div class="pill" id="q-streak">🔥 0연속</div>
+      <div class="spacer"></div>
+      <button class="ghost" id="q-quit">그만하기</button>
+    </div>
+    <div class="timer" id="timer"><i></i></div>
+    <div class="stage">
+      <div class="frame" id="frame">
+        <img id="q-img" alt="문제 그림">
+        <div class="loading" id="q-loading"><div class="spin"></div><div>그림을 거는 중…</div></div>
+        <div class="flash" id="q-flash"></div>
+      </div>
+      <div class="side">
+        <div class="q">이 그림은 어느 시대·양식일까요?</div>
+        <div class="choices" id="choices"></div>
+        <div class="fb hidden" id="fb"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 결과 -->
+  <section id="result" class="hidden">
+    <div class="result">
+      <div class="sub" id="r-mode"></div>
+      <div class="big" id="r-score"></div>
+      <div class="sub" id="r-detail"></div>
+      <div class="msg" id="r-msg"></div>
+      <div class="btns">
+        <button class="btn" id="r-again">다시 하기</button>
+        <button class="btn alt" id="r-home">처음으로</button>
+      </div>
+    </div>
+    <div class="review" id="r-review"></div>
+  </section>
+
+  <!-- 도감 -->
+  <section id="dex" class="hidden">
+    <div class="dexhead">
+      <button class="ghost" id="d-back">← 처음으로</button>
+      <h2 style="color:var(--gold2)">양식 도감</h2>
+    </div>
+    <div class="eras" id="d-eras"></div>
+    <div class="eradetail hidden" id="d-detail"></div>
+  </section>
+
+  <footer>그림 출처: Wikipedia / Wikimedia Commons (퍼블릭 도메인 작품)</footer>
+</div>
+
+<div class="lb hidden" id="lb"><img alt=""></div>
+
+<script src="data.js"></script>
+<script>
+const ERAS = window.ERAS;
+ERAS.forEach((e,i)=>{e.i=i; e.works.forEach((w,j)=>{w.id=e.id+'-'+j; w.era=i;});});
+
+const RANGES = {all:[0,ERAS.length-1], old:[1,8], new:[9,ERAS.length-1]};
+const RANGE_NAMES = {all:'전체',old:'르네상스~19세기 전반',new:'19세기 후반~20세기'};
+
+/* ---------- 유틸 ---------- */
+const $ = s=>document.querySelector(s);
+const shuffle = a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function store(k,v){try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; }}
+
+/* ---------- 이미지: 사이트 안의 img 폴더 (img/manifest.json) ---------- */
+const imgCache = {};
+const manifestReady = fetch('img/manifest.json',{cache:'no-cache'})
+  .then(r=>r.ok?r.json():{}).catch(()=>({}))
+  .then(m=>{ for(const [id,info] of Object.entries(m.images||{})) imgCache[id]='img/'+info.file; });
+function resolveImage(w){
+  return manifestReady.then(()=>imgCache[w.id]||null);
+}
+function loadImg(el,src){
+  return new Promise(res=>{
+    let done=false; const fin=ok=>{ if(!done){done=true;res(ok);} };
+    el.onload=()=>fin(true); el.onerror=()=>fin(false);
+    setTimeout(()=>fin(false),12000);
+    el.src=src;
+  });
+}
+function prefetch(w){ if(!w) return; resolveImage(w).then(s=>{ if(s){ const i=new Image(); i.src=s; } }); }
+
+/* ---------- 화면 전환 ---------- */
+function show(id){ ['home','quiz','result','dex'].forEach(s=>$('#'+s).classList.toggle('hidden',s!==id)); window.scrollTo(0,0); }
+
+/* ---------- 설정 ---------- */
+const opt = {range:'all', diff:'easy', count:10};
+document.querySelectorAll('.seg').forEach(seg=>{
+  seg.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    const k=seg.dataset.key; opt[k] = k==='count' ? +b.dataset.v : b.dataset.v;
+    refreshBest();
+  });
+});
+const bestKey = m=>`arthist-best-${m}-${opt.range}-${opt.diff}`+(m==='quiz'?'-'+opt.count:'');
+function refreshBest(){
+  const q=store(bestKey('quiz')), a=store(bestKey('attack'));
+  $('#best-quiz').textContent = q ? `🏆 최고 ${q}점 (현재 설정)` : '';
+  $('#best-attack').textContent = a ? `🏆 최고 ${a}점 (현재 설정)` : '';
+}
+refreshBest();
+document.querySelectorAll('.mode').forEach(b=>b.addEventListener('click',()=>{
+  const m=b.dataset.mode; if(m==='dex') openDex(); else startGame(m);
+}));
+
+/* ---------- 게임 ---------- */
+let S=null;
+const QUIZ_TIME=20, ATTACK_TIME=60;
+
+function buildQueue(){
+  const [lo,hi]=RANGES[opt.range];
+  const pool=[]; for(let i=lo;i<=hi;i++) pool.push(...ERAS[i].works);
+  let q=shuffle(pool);
+  // 같은 양식이 연달아 나오지 않게
+  for(let i=1;i<q.length;i++){
+    if(q[i].era===q[i-1].era){
+      const j=q.findIndex((x,k)=>k>i && x.era!==q[i-1].era);
+      if(j>0) [q[i],q[j]]=[q[j],q[i]];
+    }
+  }
+  return q;
+}
+function makeChoices(ans){
+  const [lo,hi]=RANGES[opt.range];
+  const others=[]; for(let i=lo;i<=hi;i++) if(i!==ans) others.push(i);
+  let pick;
+  if(opt.diff==='hard'){
+    const near = others.sort((a,b)=>Math.abs(a-ans)-Math.abs(b-ans)).slice(0,5);
+    pick = shuffle(near).slice(0,3);
+  } else pick = shuffle(others).slice(0,3);
+  return [ans,...pick].sort((a,b)=>a-b);
+}
+
+function startGame(mode){
+  S={mode, queue:buildQueue(), idx:0, score:0, streak:0, maxStreak:0, correct:0, asked:0,
+     wrongs:[], total: mode==='quiz'?opt.count:Infinity, time: mode==='quiz'?QUIZ_TIME:ATTACK_TIME,
+     timer:null, locked:true, cur:null};
+  S.total = Math.min(S.total, S.queue.length);
+  show('quiz');
+  $('#timer').classList.remove('low');
+  updateBar();
+  nextQ();
+}
+function updateBar(){
+  $('#q-prog').innerHTML = S.mode==='quiz' ? `문제 <b>${Math.min(S.asked,S.total)}</b> / ${S.total}` : `⚡ 남은 시간 <b>${Math.max(0,S.time).toFixed(1)}</b>초`;
+  $('#q-score').textContent=S.score;
+  $('#q-streak').textContent=`🔥 ${S.streak}연속`;
+  const max = S.mode==='quiz'?QUIZ_TIME:ATTACK_TIME;
+  $('#timer i').style.width = Math.max(0,S.time/max*100)+'%';
+  $('#timer').classList.toggle('low', S.time <= (S.mode==='quiz'?5:10));
+}
+function stopTimer(){ clearInterval(S.timer); S.timer=null; }
+function startTimer(){
+  stopTimer();
+  let last=performance.now();
+  S.timer=setInterval(()=>{
+    const now=performance.now(); S.time-=(now-last)/1000; last=now;
+    updateBar();
+    if(S.time<=0){ S.time=0; updateBar(); stopTimer(); if(S.mode==='quiz') answer(-1); else endGame(); }
+  },100);
+}
+
+async function nextQ(){
+  if(!S) return;
+  if(S.mode==='quiz' && S.asked>=S.total) return endGame();
+  if(S.idx>=S.queue.length){ // 타임어택: 한 바퀴 돌면 다시 섞기
+    if(S.mode==='attack'){ S.queue=buildQueue(); S.idx=0; } else return endGame();
+  }
+  const my=S; const w=S.queue[S.idx];
+  S.locked=true; $('#fb').classList.add('hidden');
+  const img=$('#q-img'); img.classList.remove('show');
+  $('#q-loading').classList.remove('hidden');
+  $('#choices').innerHTML='';
+  if(S.mode==='quiz'){ S.time=QUIZ_TIME; updateBar(); }
+
+  const src = await resolveImage(w);
+  const ok = src && await loadImg(img,src);
+  if(S!==my) return;
+  if(!ok){ // 그림을 못 불러오면 건너뛰기
+    S.queue.splice(S.idx,1);
+    if(S.mode==='quiz') S.total=Math.min(S.total,S.queue.length);
+    if(!S.queue.length){ alert('그림을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.'); return goHome(); }
+    return nextQ();
+  }
+  S.cur=w; S.asked++;
+  $('#q-loading').classList.add('hidden'); img.classList.add('show');
+  renderChoices(makeChoices(w.era));
+  prefetch(S.queue[S.idx+1]); prefetch(S.queue[S.idx+2]);
+  S.locked=false; updateBar(); startTimer();
+}
+function renderChoices(list){
+  const box=$('#choices'); box.innerHTML='';
+  list.forEach((ei,k)=>{
+    const e=ERAS[ei];
+    const b=document.createElement('button'); b.className='choice'; b.dataset.era=ei;
+    b.innerHTML=`<span class="k">${k+1}</span><span>${esc(e.name)}${opt.diff==='easy'?`<small>${esc(e.per)}</small>`:''}</span>`;
+    b.onclick=()=>answer(ei);
+    box.appendChild(b);
+  });
+}
+function flash(ok){ const f=$('#q-flash'); f.textContent=ok?'⭕':'❌'; f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); }
+
+function answer(ei){
+  if(!S||S.locked) return;
+  S.locked=true;
+  const w=S.cur, ok = ei===w.era;
+  document.querySelectorAll('.choice').forEach(b=>{
+    b.disabled=true; const v=+b.dataset.era;
+    if(v===w.era) b.classList.add('ok'); else if(v===ei) b.classList.add('bad');
+  });
+  flash(ok);
+  let gain=0;
+  if(ok){
+    S.correct++; S.streak++; S.maxStreak=Math.max(S.maxStreak,S.streak);
+    if(S.mode==='quiz'){ gain = 100 + Math.round(S.time*5) + Math.min(S.streak-1,5)*20; }
+    else gain=1;
+    S.score+=gain;
+  } else {
+    S.streak=0; S.wrongs.push({w, pick:ei});
+    if(S.mode==='attack') S.time-=3;
+  }
+  S.idx++;
+  if(S.mode==='attack'){
+    updateBar();
+    if(S.time<=0){ stopTimer(); return setTimeout(endGame,500); }
+    setTimeout(()=>{ if(S&&S.mode==='attack') nextQ(); }, ok?450:1000);
+    return;
+  }
+  stopTimer(); updateBar();
+  showFeedback(w, ei, ok, gain);
+}
+function timelineHTML(ans,pick){
+  return `<div class="tl">${ERAS.map((e,i)=>{
+    const [lo,hi]=RANGES[opt.range];
+    const cls = i===ans?'ans':(i===pick?'pick':(i>=lo&&i<=hi?'inr':''));
+    return `<i class="${cls}" title="${esc(e.name)}"></i>`;}).join('')}</div>
+    <div class="tl-l"><span>13세기</span><span>16세기</span><span>18세기</span><span>19세기</span><span>20세기</span></div>`;
+}
+function showFeedback(w,pick,ok,gain){
+  const e=ERAS[w.era];
+  const head = ok ? `⭕ 정답! <span style="font-size:16px;color:var(--gold2)">+${gain}</span>`
+                  : (pick<0 ? `⏰ 시간 초과! 정답은 ${esc(e.name)}` : `❌ 아쉬워요! 정답은 ${esc(e.name)}`);
+  const fb=$('#fb');
+  fb.innerHTML=`
+    <div class="head ${ok?'ok':'bad'}">${head}</div>
+    <div class="work"><b>〈${esc(w.t)}〉</b> · ${esc(w.a)} · ${esc(w.y)}</div>
+    <div class="desc"><b style="color:var(--ink)">${esc(e.name)}</b> (${esc(e.per)}) — ${esc(e.desc)}</div>
+    <div class="chips">${e.tips.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div>
+    ${timelineHTML(w.era,ok?-1:pick)}
+    <button class="next" id="nextBtn">${S.asked>=S.total?'결과 보기':'다음 문제'} →</button>`;
+  fb.classList.remove('hidden');
+  $('#nextBtn').onclick=nextQ;
+  if(window.innerWidth<900) fb.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function endGame(){
+  if(!S) return; stopTimer();
+  const s=S; S=null;
+  const key=bestKey(s.mode); const prev=store(key)||0; const isBest=s.score>prev;
+  if(isBest) store(key,s.score);
+  $('#r-mode').textContent = (s.mode==='quiz'?'🖼️ 차근차근 퀴즈':'⚡ 60초 타임어택')+` · ${RANGE_NAMES[opt.range]} · ${opt.diff==='easy'?'쉬움':'어려움'}`;
+  $('#r-score').textContent = s.score+'점';
+  const answered = s.mode==='quiz' ? s.asked : s.correct+s.wrongs.length;
+  const acc = answered? Math.round(s.correct/answered*100):0;
+  $('#r-detail').textContent = `${answered}문제 중 ${s.correct}개 정답 (정답률 ${acc}%) · 최고 연속 ${s.maxStreak}개`+(isBest&&s.score>0?' · 🏆 최고 기록!':'');
+  $('#r-msg').textContent = acc>=90?'🎨 미술관 큐레이터 수준이에요!': acc>=70?'👏 시대의 흐름이 보이기 시작했어요!': acc>=40?'🖌️ 좋아요! 도감으로 특징을 한 번 더 보면 금방 늘어요.':'📚 도감에서 양식별 특징을 먼저 살펴보고 다시 도전해 봐요!';
+  const rv=$('#r-review');
+  if(s.wrongs.length){
+    rv.innerHTML=`<h3>틀린 그림 다시 보기 (${s.wrongs.length})</h3><div class="rgrid">${s.wrongs.map((x,i)=>`
+      <div class="rcard" data-i="${i}"><div class="th" style="background-image:url('${esc(imgCache[x.w.id]||'')}')"></div>
+      <div class="tx"><b>${esc(ERAS[x.w.era].name)}</b><br>〈${esc(x.w.t)}〉 ${esc(x.w.a)}<br>
+      <span class="mine">내 답: ${x.pick<0?'시간 초과':esc(ERAS[x.pick].name)}</span></div></div>`).join('')}</div>`;
+    rv.querySelectorAll('.rcard').forEach(c=>c.onclick=()=>{ const src=imgCache[s.wrongs[+c.dataset.i].w.id]; if(src) zoom(src); });
+  } else rv.innerHTML = answered? '<h3 style="text-align:center">틀린 문제 없음 — 완벽해요! ✨</h3>' : '';
+  $('#r-again').onclick=()=>startGame(s.mode);
+  show('result'); refreshBest();
+}
+function goHome(){ if(S){stopTimer(); S=null;} show('home'); refreshBest(); }
+$('#q-quit').onclick=()=>{ if(S && S.asked>0 && confirm('지금까지 결과를 볼까요?\n(취소를 누르면 처음 화면으로 가요)')) endGame(); else goHome(); };
+$('#r-home').onclick=goHome;
+$('#d-back').onclick=goHome;
+
+/* ---------- 확대 ---------- */
+function zoom(src){ const lb=$('#lb'); lb.querySelector('img').src=src; lb.classList.remove('hidden'); }
+$('#lb').onclick=()=>$('#lb').classList.add('hidden');
+$('#q-img').onclick=()=>{ if($('#q-img').src) zoom($('#q-img').src); };
+
+/* ---------- 키보드 ---------- */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') $('#lb').classList.add('hidden');
+  if($('#quiz').classList.contains('hidden')) return;
+  if(/^[1-4]$/.test(e.key)){ const b=document.querySelectorAll('.choice')[+e.key-1]; if(b&&!b.disabled) b.click(); }
+  if(e.key==='Enter'){ const n=$('#nextBtn'); if(n && !$('#fb').classList.contains('hidden')) { e.preventDefault(); n.click(); } }
+});
+
+/* ---------- 도감 ---------- */
+function openDex(){
+  show('dex');
+  $('#d-detail').classList.add('hidden');
+  $('#d-eras').innerHTML = ERAS.map(e=>`<button class="era" style="--c:${e.c}" data-i="${e.i}"><b>${e.i+1}. ${esc(e.name)}</b><span>${esc(e.per)}</span></button>`).join('');
+  $('#d-eras').querySelectorAll('.era').forEach(b=>b.onclick=()=>openEra(+b.dataset.i));
+}
+async function openEra(i){
+  const e=ERAS[i], d=$('#d-detail');
+  d.style.setProperty('--c',e.c);
+  d.innerHTML=`<div class="top"><h2>${esc(e.name)}</h2><div class="per">${esc(e.per)}</div></div>
+    <p>${esc(e.desc)}</p>
+    <div class="chips">${e.tips.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div>
+    <div class="wgrid">${e.works.map((w,j)=>`<div class="wcard"><div class="th" id="th-${w.id}">불러오는 중…</div>
+      <div class="tx"><b>〈${esc(w.t)}〉</b><br><span>${esc(w.a)} · ${esc(w.y)}</span></div></div>`).join('')}</div>
+    <div class="btns" style="margin-top:18px">
+      ${i>0?`<button class="btn alt" id="d-prev">← ${esc(ERAS[i-1].name)}</button>`:''}
+      ${i<ERAS.length-1?`<button class="btn alt" id="d-next">${esc(ERAS[i+1].name)} →</button>`:''}
+    </div>`;
+  d.classList.remove('hidden');
+  if($('#d-prev')) $('#d-prev').onclick=()=>openEra(i-1);
+  if($('#d-next')) $('#d-next').onclick=()=>openEra(i+1);
+  d.scrollIntoView({behavior:'smooth'});
+  for(const w of e.works){
+    resolveImage(w).then(src=>{
+      const th=document.getElementById('th-'+w.id); if(!th) return;
+      if(src){ th.innerHTML=`<img src="${esc(src)}" alt="${esc(w.t)}" loading="lazy">`; th.onclick=()=>zoom(src); }
+      else th.textContent='그림을 불러오지 못했어요';
+    });
+  }
+}
+</script>
+</body>
