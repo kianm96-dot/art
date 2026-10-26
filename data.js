@@ -68,7 +68,7 @@ window.ERAS = [
   works:[
    {a:'자크루이 다비드',t:'호라티우스 형제의 맹세',y:'1784',w:'Oath of the Horatii'},
    {a:'자크루이 다비드',t:'마라의 죽음',y:'1793',w:'The Death of Marat'},
-   {a:'자크루이 다비드',t:'알프스를 넘는 나폴레옹',y:'1801',c:'Jacques-Louis David Napoleon Crossing the Alps Malmaison',w:'Napoleon Crossing the Alps'},
+   {a:'자크루이 다비드',t:'알프스를 넘는 나폴레옹',y:'1801',c:'intitle:David intitle:Napoleon intitle:Alps -intitle:detail',w:'Napoleon Crossing the Alps'},
    {a:'장오귀스트 앵그르',t:'그랑드 오달리스크',y:'1814',w:'Grande Odalisque'}
   ]},
  {id:'romantic',name:'낭만주의',per:'19세기 전반',c:'#b5543a',
@@ -146,9 +146,9 @@ window.ERAS = [
   tips:['여러 시점이 한 화면에','기하학적인 면으로 쪼갬','갈색·회색 위주의 차분한 색'],
   works:[
    {a:'후안 그리스',t:'피카소의 초상',y:'1912',c:'Juan Gris Portrait of Pablo Picasso 1912'},
-   {a:'장 메챙제',t:'티타임',y:'1911',c:'Jean Metzinger Le goûter Tea Time 1911'},
+   {a:'장 메챙제',t:'티타임',y:'1911',c:'intitle:Metzinger intitle:goûter'},
    {a:'후안 그리스',t:'체크 무늬 식탁보가 있는 정물',y:'1915',c:'Juan Gris Still Life with Checked Tablecloth 1915'},
-   {a:'로베르 들로네',t:'에펠탑',y:'1911',c:'Robert Delaunay Tour Eiffel 1911'}
+   {a:'로베르 들로네',t:'에펠탑',y:'1911',c:'intitle:Delaunay intitle:Eiffel'}
   ]},
  {id:'futurism',name:'미래주의',per:'1909~1916',c:'#d97a2b',
   desc:'이탈리아에서 시작된 “속도의 미술”. 기계·자동차·도시의 에너지를 찬양하며 움직이는 모습을 여러 겹으로 겹쳐 그렸어요.',
