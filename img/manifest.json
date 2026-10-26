@@ -198,8 +198,9 @@
   },
   "rococo-3": {
    "file": "rococo-3.jpg",
-   "w": "Diana Leaving Her Bath",
-   "q": "Boucher Diana Leaving her Bath painting",
+   "w": "Diana Bathing (Boucher)",
+   "q": null,
+   "c": null,
    "page": "Diana Bathing (Boucher)",
    "source": "https://commons.wikimedia.org/wiki/File:François_Boucher_-_Diana_Resting_after_her_Bath,_1742.jpg"
   },
@@ -394,17 +395,19 @@
   },
   "nouveau-2": {
    "file": "nouveau-2.jpg",
-   "w": "Judith and the Head of Holofernes",
+   "w": null,
    "q": null,
-   "page": "Judith beheading Holofernes",
-   "source": "https://commons.wikimedia.org/wiki/File:Judit_decapitando_a_Holofernes,_por_Artemisia_Gentileschi.jpg"
+   "c": "Gustav Klimt Judith I 1901 Belvedere",
+   "page": "File:Gustav Klimt - Judith - 4737 - Österreichische Galerie Belvedere.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Gustav Klimt - Judith - 4737 - Österreichische Galerie Belvedere.jpg"
   },
   "nouveau-3": {
    "file": "nouveau-3.jpg",
    "w": null,
-   "q": "Alphonse Mucha Gismonda poster",
-   "page": "Alphonse Mucha",
-   "source": "https://commons.wikimedia.org/wiki/File:Photographic_selfportrait_of_Alfons_Mucha,_1928_(2).jpg"
+   "q": null,
+   "c": "Mucha Gismonda poster 1894",
+   "page": "File:Alphonse Mucha - Poster for Victorien Sardou's Gismonda starring Sarah Bernhardt.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Alphonse Mucha - Poster for Victorien Sardou's Gismonda starring Sarah Bernhardt.jpg"
   },
   "fauvism-0": {
    "file": "fauvism-0.jpg",
@@ -435,11 +438,12 @@
    "source": "https://commons.wikimedia.org/wiki/File:Matisse-The-Dessert-Harmony-in-Red-Henri-1908-fast.jpg"
   },
   "fauvism-4": {
-   "file": "fauvism-4.jpg",
+   "file": "fauvism-4.png",
    "w": null,
-   "q": "André Derain Charing Cross Bridge London painting",
-   "page": "André Derain",
-   "source": "https://commons.wikimedia.org/wiki/File:André_Derain,_circa_1903.jpg"
+   "q": null,
+   "c": "André Derain Charing Cross Bridge 1906",
+   "page": "File:Derain CharingCrossBridge.png",
+   "source": "https://commons.wikimedia.org/wiki/File:Derain CharingCrossBridge.png"
   },
   "expression-0": {
    "file": "expression-0.jpg",
@@ -471,31 +475,35 @@
   },
   "cubism-0": {
    "file": "cubism-0.jpg",
-   "w": "Portrait of Pablo Picasso (Juan Gris)",
-   "q": "Juan Gris Portrait of Pablo Picasso 1912",
-   "page": "Daniel-Henry Kahnweiler (Picasso)",
-   "source": "https://commons.wikimedia.org/wiki/File:Picasso_Portrait_of_Daniel-Henry_Kahnweiler_1910.jpg"
+   "w": null,
+   "q": null,
+   "c": "Juan Gris Portrait of Pablo Picasso 1912",
+   "page": "File:Juan Gris - Portrait of Pablo Picasso - Google Art Project.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Juan Gris - Portrait of Pablo Picasso - Google Art Project.jpg"
   },
   "cubism-1": {
    "file": "cubism-1.jpg",
-   "w": "Tea Time (Woman with a Teaspoon)",
+   "w": null,
    "q": null,
-   "page": "Tea",
-   "source": "https://commons.wikimedia.org/wiki/File:Longjing_tea_steeping_in_gaiwan.jpg"
+   "c": "Jean Metzinger Le goûter Tea Time 1911",
+   "page": "File:Tea time in Mauritania 2.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Tea time in Mauritania 2.jpg"
   },
   "cubism-2": {
    "file": "cubism-2.jpg",
    "w": null,
-   "q": "Fernand Léger The City 1919 painting",
-   "page": "Fernand Léger",
-   "source": "https://commons.wikimedia.org/wiki/File:Signature_of_Fernand_Léger,_1926.JPG"
+   "q": null,
+   "c": "Juan Gris Still Life with Checked Tablecloth 1915",
+   "page": "File:Still Life with Checked Tablecloth Juan Gris 1915.jpeg",
+   "source": "https://commons.wikimedia.org/wiki/File:Still Life with Checked Tablecloth Juan Gris 1915.jpeg"
   },
   "cubism-3": {
    "file": "cubism-3.jpg",
    "w": null,
-   "q": "Robert Delaunay Eiffel Tower painting 1911",
-   "page": "Eiffel Tower (Delaunay series)",
-   "source": "https://commons.wikimedia.org/wiki/File:Eiffel_trocadero_i.jpg"
+   "q": null,
+   "c": "Robert Delaunay Tour Eiffel 1911",
+   "page": "File:Paris - The Eiffel Tower in spring - 2307.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Paris - The Eiffel Tower in spring - 2307.jpg"
   },
   "futurism-0": {
    "file": "futurism-0.jpg",
@@ -535,16 +543,18 @@
   "abstract-1": {
    "file": "abstract-1.jpg",
    "w": null,
-   "q": "Kandinsky Yellow-Red-Blue 1925",
-   "page": "Wassily Kandinsky",
-   "source": "https://commons.wikimedia.org/wiki/File:Kandinsky_-_Vassily_Kandinsky_by_Adolf_Elnain_Photo_credits_-_Georges_Meguerditchian.jpg"
+   "q": null,
+   "c": "Kandinsky Gelb-Rot-Blau 1925",
+   "page": "File:Kandinsky - Jaune Rouge Bleu.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Kandinsky - Jaune Rouge Bleu.jpg"
   },
   "abstract-2": {
    "file": "abstract-2.jpg",
-   "w": "Composition II in Red, Blue, and Yellow",
+   "w": null,
    "q": null,
-   "page": "Piet Mondrian",
-   "source": "https://commons.wikimedia.org/wiki/File:Piet_Mondriaan.jpg"
+   "c": "Piet Mondrian Composition with Red Blue and Yellow 1930",
+   "page": "File:Piet Mondriaan, 1930 - Mondrian Composition II in Red, Blue, and Yellow.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Piet Mondriaan, 1930 - Mondrian Composition II in Red, Blue, and Yellow.jpg"
   },
   "abstract-3": {
    "file": "abstract-3.jpg",
@@ -559,9 +569,15 @@
    "q": null,
    "page": "Black Square",
    "source": "https://commons.wikimedia.org/wiki/File:Kazimir_Malevich,_1915,_Black_Suprematic_Square,_oil_on_linen_canvas,_79.5_x_79.5_cm,_Tretyakov_Gallery,_Moscow.jpg"
+  },
+  "neoclassic-2": {
+   "file": "neoclassic-2.jpg",
+   "w": "Napoleon Crossing the Alps",
+   "q": null,
+   "c": "Jacques-Louis David Napoleon Crossing the Alps Malmaison",
+   "page": "File:David - Napoleon crossing the Alps - Malmaison1 detail1.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:David - Napoleon crossing the Alps - Malmaison1 detail1.jpg"
   }
  },
- "failed": [
-  "neoclassic-2 자크루이 다비드 〈알프스를 넘는 나폴레옹〉"
- ]
+ "failed": []
 }
