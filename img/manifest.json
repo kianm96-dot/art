@@ -485,14 +485,6 @@
    "file": "cubism-2.jpg",
    "w": null,
    "q": null,
-   "c": "Juan Gris Still Life with Checked Tablecloth 1915",
-   "page": "File:Still Life with Checked Tablecloth Juan Gris 1915.jpeg",
-   "source": "https://commons.wikimedia.org/wiki/File:Still Life with Checked Tablecloth Juan Gris 1915.jpeg"
-  },
-  "cubism-3": {
-   "file": "cubism-3.jpg",
-   "w": null,
-   "q": null,
    "c": "intitle:Delaunay intitle:Eiffel",
    "page": "File:Robert Delaunay (1885) - Der Eiffel-Turm - 2698 - Staatliche Kunsthalle Karlsruhe.jpg",
    "source": "https://commons.wikimedia.org/wiki/File:Robert Delaunay (1885) - Der Eiffel-Turm - 2698 - Staatliche Kunsthalle Karlsruhe.jpg"
@@ -569,9 +561,15 @@
    "c": "intitle:David intitle:Napoleon intitle:Alps -intitle:detail",
    "page": "File:Jacques-Louis David - Napoleon Crossing the Alps - Schloss Charlottenburg.jpg",
    "source": "https://commons.wikimedia.org/wiki/File:Jacques-Louis David - Napoleon Crossing the Alps - Schloss Charlottenburg.jpg"
+  },
+  "cubism-1": {
+   "file": "cubism-1.jpg",
+   "w": null,
+   "q": null,
+   "c": "Juan Gris Still Life with Checked Tablecloth 1915",
+   "page": "File:Still Life with Checked Tablecloth Juan Gris 1915.jpeg",
+   "source": "https://commons.wikimedia.org/wiki/File:Still Life with Checked Tablecloth Juan Gris 1915.jpeg"
   }
  },
- "failed": [
-  "cubism-1 알베르 글레즈 〈발코니의 남자〉"
- ]
+ "failed": []
 }
