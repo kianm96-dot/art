@@ -25,6 +25,8 @@ function memCmd([c, ...a]) {
   a = a.map(String);
   const k = a[0];
   switch (String(c).toUpperCase()) {
+    case 'GET': return mem.has(k) ? mem.get(k) : null;
+    case 'SET': mem.set(k, a[1]); return 'OK';
     case 'RPUSH': { let l = mem.get(k); if (!l) mem.set(k, (l = [])); l.push(...a.slice(1)); return l.length; }
     case 'LRANGE': { const l = mem.get(k) || []; const e = Number(a[2]) < 0 ? l.length : Number(a[2]) + 1; return l.slice(Number(a[1]), e); }
     case 'SADD': { let s = mem.get(k); if (!s) mem.set(k, (s = new Set())); let n = 0; for (const x of a.slice(1)) if (!s.has(x)) { s.add(x); n++; } return n; }
@@ -49,3 +51,4 @@ export async function body(req) {
 }
 export const classKey = (g, c) => `art:rec:${g}-${c}`;
 export const CLASSES = 'art:classes';
+export const CONFIG = 'art:config';

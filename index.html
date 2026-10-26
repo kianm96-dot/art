@@ -197,6 +197,7 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
       </div>
     </div>
 
+    <p class="note" id="off-note" style="color:var(--gold2);margin:10px 0 0"></p>
     <div class="modes">
       <button class="mode" data-mode="quiz">
         <div class="ic">🖼️</div><h3>차근차근 퀴즈</h3>
@@ -366,9 +367,26 @@ async function saveScore(rec){
 let S=null;
 const QUIZ_TIME=20, ATTACK_TIME=60;
 
+/* 선생님이 끈 양식은 게임에 나오지 않음 */
+let OFF=new Set();
+const configReady=fetch('/api/config',{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}))
+  .then(c=>{ OFF=new Set(c.disabled||[]); markRanges(); });
+function activeIdx(range=opt.range){
+  const [lo,hi]=RANGES[range]; const out=[];
+  for(let i=lo;i<=hi;i++) if(!OFF.has(ERAS[i].id)) out.push(i);
+  return out;
+}
+function markRanges(){
+  document.querySelectorAll('[data-key=range] button').forEach(b=>{
+    const n=activeIdx(b.dataset.v).length; b.disabled=n<2; b.style.opacity=n<2?.35:'';
+    if(n<2 && b.classList.contains('on')){ b.classList.remove('on'); opt.range='all'; document.querySelector('[data-key=range] [data-v=all]').classList.add('on'); }
+  });
+  const note=$('#off-note');
+  if(note){ const on=ERAS.filter(e=>!OFF.has(e.id)); note.textContent = OFF.size? `📌 선생님이 고른 양식 ${on.length}개만 나와요: ${on.map(e=>e.name).join(' · ')}` : ''; }
+}
+
 function buildQueue(){
-  const [lo,hi]=RANGES[opt.range];
-  const pool=[]; for(let i=lo;i<=hi;i++) pool.push(...ERAS[i].works);
+  const pool=[]; for(const i of activeIdx()) pool.push(...ERAS[i].works);
   let q=shuffle(pool);
   // 같은 양식이 연달아 나오지 않게
   for(let i=1;i<q.length;i++){
@@ -380,8 +398,7 @@ function buildQueue(){
   return q;
 }
 function makeChoices(ans){
-  const [lo,hi]=RANGES[opt.range];
-  const others=[]; for(let i=lo;i<=hi;i++) if(i!==ans) others.push(i);
+  const others=activeIdx().filter(i=>i!==ans);
   let pick;
   if(opt.diff==='hard'){
     const near = others.sort((a,b)=>Math.abs(a-ans)-Math.abs(b-ans)).slice(0,5);
@@ -390,8 +407,10 @@ function makeChoices(ans){
   return [ans,...pick].sort((a,b)=>a-b);
 }
 
-function startGame(mode){
+async function startGame(mode){
   const me=readMe(); if(!me) return;
+  await configReady;
+  if(activeIdx().length<2){ $('#me-msg').textContent='이 범위에는 선생님이 켜 둔 양식이 2개보다 적어요. 범위를 바꿔 보세요.'; return; }
   S={me, mode, queue:buildQueue(), idx:0, score:0, streak:0, maxStreak:0, correct:0, asked:0,
      wrongs:[], total: mode==='quiz'?opt.count:Infinity, time: mode==='quiz'?QUIZ_TIME:ATTACK_TIME,
      timer:null, locked:true, cur:null};
@@ -491,9 +510,9 @@ function answer(ei){
   showFeedback(w, ei, ok, gain);
 }
 function timelineHTML(ans,pick){
+  const act=activeIdx();
   return `<div class="tl">${ERAS.map((e,i)=>{
-    const [lo,hi]=RANGES[opt.range];
-    const cls = i===ans?'ans':(i===pick?'pick':(i>=lo&&i<=hi?'inr':''));
+    const cls = i===ans?'ans':(i===pick?'pick':(act.includes(i)?'inr':''));
     return `<i class="${cls}" title="${esc(e.name)}"></i>`;}).join('')}</div>
     <div class="tl-l"><span>13세기</span><span>16세기</span><span>18세기</span><span>19세기</span><span>20세기</span></div>`;
 }
@@ -561,7 +580,7 @@ document.addEventListener('keydown',e=>{
 function openDex(){
   show('dex');
   $('#d-detail').classList.add('hidden');
-  $('#d-eras').innerHTML = ERAS.map(e=>`<button class="era" style="--c:${e.c}" data-i="${e.i}"><b>${e.i+1}. ${esc(e.name)}</b><span>${esc(e.per)}</span></button>`).join('');
+  $('#d-eras').innerHTML = ERAS.map(e=>`<button class="era" style="--c:${e.c};${OFF.has(e.id)?'opacity:.45':''}" data-i="${e.i}"><b>${e.i+1}. ${esc(e.name)}</b><span>${esc(e.per)}${OFF.has(e.id)?' · 이번 게임엔 안 나와요':''}</span></button>`).join('');
   $('#d-eras').querySelectorAll('.era').forEach(b=>b.onclick=()=>openEra(+b.dataset.i));
 }
 async function openEra(i){

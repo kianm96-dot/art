@@ -52,6 +52,14 @@ tr.stu.open td:first-child::before{content:'▾ '}
 tr.sub td{background:#0002;color:var(--muted);font-size:13px;padding:6px 12px 6px 34px}
 .best{color:var(--gold2);font-weight:700}
 .tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted)}
+.eras{margin-bottom:18px}
+.eras .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
+.eras .top h2{font-size:20px;margin-right:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 14px;border-radius:999px;font-size:14px;text-decoration:line-through}
+.chips button.on{background:#3a2c1b;border-color:var(--gold);color:var(--gold2);text-decoration:none;font-weight:700}
+.chips button small{font-weight:400;color:var(--muted);margin-left:4px}
+#era-st{font-size:13px;color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:40px 0}
 </style>
 </head>
@@ -72,6 +80,16 @@ tr.sub td{background:#0002;color:var(--muted);font-size:13px;padding:6px 12px 6p
   </div>
 
   <div id="main" class="hidden">
+    <div class="card eras">
+      <div class="top">
+        <h2>게임에 나올 양식</h2>
+        <button class="ghost" id="era-all">전부 켜기</button>
+        <button class="ghost" id="era-none">전부 끄기</button>
+        <span id="era-st"></span>
+      </div>
+      <div class="chips" id="era-chips"></div>
+      <p class="muted" style="margin:10px 0 0">누르면 켜고/끄기가 바로 저장돼요. 꺼진 양식은 문제와 보기에 나오지 않아요. 학생은 게임 화면을 새로고침하면 반영돼요.</p>
+    </div>
     <div class="classes" id="classes"></div>
     <div id="view" class="hidden">
       <div class="bar">
@@ -91,6 +109,7 @@ tr.sub td{background:#0002;color:var(--muted);font-size:13px;padding:6px 12px 6p
   </div>
 </div>
 
+<script src="data.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -113,12 +132,36 @@ async function login(){
   try{
     await loadClasses();
     try{ sessionStorage.setItem('art-tpass',pass); }catch(e){}
+    loadEras();
     $('#login').classList.add('hidden'); $('#main').classList.remove('hidden'); $('#logout').classList.remove('hidden');
   }catch(e){ $('#lerr').textContent=e.message; pass=''; try{sessionStorage.removeItem('art-tpass');}catch(_){} }
 }
 $('#go').onclick=login;
 $('#pw').addEventListener('keydown',e=>{ if(e.key==='Enter') login(); });
 $('#logout').onclick=()=>{ try{sessionStorage.removeItem('art-tpass');}catch(e){} location.reload(); };
+
+/* ---------- 양식 켜기/끄기 ---------- */
+let OFF=new Set(), saveT=null;
+async function loadEras(){
+  const r=await fetch('/api/config',{cache:'no-store'}); const c=await r.json().catch(()=>({}));
+  OFF=new Set(c.disabled||[]); drawEras();
+}
+function drawEras(){
+  const box=$('#era-chips');
+  box.innerHTML=window.ERAS.map(e=>`<button data-id="${e.id}" class="${OFF.has(e.id)?'':'on'}">${esc(e.name)}<small>${esc(e.per)}</small></button>`).join('');
+  box.querySelectorAll('button').forEach(b=>b.onclick=()=>{ const id=b.dataset.id; OFF.has(id)?OFF.delete(id):OFF.add(id); drawEras(); saveEras(); });
+  const on=window.ERAS.length-OFF.size;
+  $('#era-st').textContent=`${on}개 켜짐`+(on<2?' · 2개 이상 켜야 게임을 할 수 있어요':'');
+}
+function saveEras(){
+  clearTimeout(saveT); $('#era-st').textContent+=' · 저장 중…';
+  saveT=setTimeout(async()=>{
+    try{ await api('setEras',{disabled:[...OFF]}); drawEras(); $('#era-st').textContent+=' · ✅ 저장됨'; }
+    catch(e){ drawEras(); $('#era-st').textContent+=' · ⚠️ '+e.message; }
+  },500);
+}
+$('#era-all').onclick=()=>{ OFF.clear(); drawEras(); saveEras(); };
+$('#era-none').onclick=()=>{ OFF=new Set(window.ERAS.map(e=>e.id)); drawEras(); saveEras(); };
 
 async function loadClasses(){
   const {classes}=await api('classes');
