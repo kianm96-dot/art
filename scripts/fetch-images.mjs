@@ -39,6 +39,29 @@ async function api(params) {
   return null;
 }
 
+// 위키미디어 공용(Commons) 파일 검색: 저작권 만료 그림만 올라와 있음
+async function commons(q) {
+  const p = new URLSearchParams({ action: 'query', format: 'json', generator: 'search', gsrnamespace: '6',
+    gsrsearch: q, gsrlimit: '5', prop: 'imageinfo', iiprop: 'url|mime', iiurlwidth: '1200' });
+  for (let t = 0; t < 3; t++) {
+    try {
+      const r = await fetch(`https://commons.wikimedia.org/w/api.php?${p}`, { headers: { 'User-Agent': UA } });
+      if (r.ok) {
+        const j = await r.json();
+        const pages = Object.values(j.query?.pages || {}).sort((a, b) => (a.index || 0) - (b.index || 0));
+        for (const pg of pages) {
+          const ii = pg.imageinfo?.[0];
+          if (ii?.thumburl && /^image\/(jpeg|png|tiff|webp)/.test(ii.mime))
+            return { url: ii.thumburl, page: pg.title, file: pg.title.replace(/^File:/, '') };
+        }
+        return null;
+      }
+    } catch (e) {}
+    await sleep(1500);
+  }
+  return null;
+}
+
 async function download(url, dest) {
   for (let t = 0; t < 3; t++) {
     try {
@@ -58,20 +81,29 @@ for (const era of ERAS) {
     const id = `${era.id}-${j}`;
     keep.add(id);
     const prev = manifest.images[id];
-    if (!ALL && prev && prev.w === (w.w || null) && prev.q === (w.q || null) && fs.existsSync(path.join(IMG, prev.file))) continue;
+    if (!ALL && prev && prev.w === (w.w || null) && prev.q === (w.q || null) && (prev.c || null) === (w.c || null) && fs.existsSync(path.join(IMG, prev.file))) continue;
 
-    let hit = w.w ? await api({ titles: w.w, redirects: '1' }) : null;
-    if (!hit) hit = await api({ generator: 'search', gsrsearch: w.q || `${w.w} painting`, gsrlimit: '1', gsrnamespace: '0' });
-    if (!hit) { failed.push(`${id} ${w.a} 〈${w.t}〉`); delete manifest.images[id]; continue; }
+    let hit = w.c ? await commons(w.c) : null;
+    if (!hit && w.w) hit = await api({ titles: w.w, redirects: '1' });
+    if (!hit && (w.w || w.q)) hit = await api({ generator: 'search', gsrsearch: w.q || `${w.w} painting`, gsrlimit: '1', gsrnamespace: '0' });
+    if (!hit) {
+      failed.push(`${id} ${w.a} 〈${w.t}〉`);
+      if (prev) fs.rmSync(path.join(IMG, prev.file), { force: true });
+      delete manifest.images[id]; continue;
+    }
 
     const ext = (hit.url.match(/\.(jpe?g|png|gif|webp)(?:$|\?)/i)?.[1] || 'jpg').toLowerCase().replace('jpeg', 'jpg');
     const file = `${id}.${ext}`;
     if (await download(hit.url, path.join(IMG, file))) {
       if (prev && prev.file !== file) fs.rmSync(path.join(IMG, prev.file), { force: true });
-      manifest.images[id] = { file, w: w.w || null, q: w.q || null, page: hit.page,
+      manifest.images[id] = { file, w: w.w || null, q: w.q || null, c: w.c || null, page: hit.page,
         source: `https://commons.wikimedia.org/wiki/File:${hit.file}` };
       console.log(`OK   ${id}  ${w.t}  <- ${hit.page}`);
-    } else { failed.push(`${id} ${w.a} 〈${w.t}〉 (다운로드 실패)`); }
+    } else {
+      failed.push(`${id} ${w.a} 〈${w.t}〉 (다운로드 실패)`);
+      if (prev) fs.rmSync(path.join(IMG, prev.file), { force: true });
+      delete manifest.images[id];
+    }
     await sleep(400);
   }
 }

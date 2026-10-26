@@ -60,7 +60,7 @@ window.ERAS = [
    {a:'장오노레 프라고나르',t:'그네',y:'1767',w:'The Swing (Fragonard)'},
    {a:'장앙투안 바토',t:'키테라 섬의 순례',y:'1717',w:'Pilgrimage to Cythera'},
    {a:'장오노레 프라고나르',t:'책 읽는 소녀',y:'1770년경',w:'Young Girl Reading'},
-   {a:'프랑수아 부셰',t:'목욕을 마친 디아나',y:'1742',w:'Diana Leaving Her Bath',q:'Boucher Diana Leaving her Bath painting'}
+   {a:'프랑수아 부셰',t:'목욕하는 디아나',y:'1742',w:'Diana Bathing (Boucher)'}
   ]},
  {id:'neoclassic',name:'신고전주의',per:'18세기 말~19세기 초',c:'#8aa3b8',
   desc:'달콤한 로코코에 반발해 고대 그리스·로마의 엄격함으로 돌아간 양식. 또렷한 윤곽선, 매끈한 표면, 영웅과 애국심을 그렸어요.',
@@ -68,7 +68,7 @@ window.ERAS = [
   works:[
    {a:'자크루이 다비드',t:'호라티우스 형제의 맹세',y:'1784',w:'Oath of the Horatii'},
    {a:'자크루이 다비드',t:'마라의 죽음',y:'1793',w:'The Death of Marat'},
-   {a:'자크루이 다비드',t:'알프스를 넘는 나폴레옹',y:'1801',w:'Napoleon Crossing the Alps'},
+   {a:'자크루이 다비드',t:'알프스를 넘는 나폴레옹',y:'1801',c:'Jacques-Louis David Napoleon Crossing the Alps Malmaison',w:'Napoleon Crossing the Alps'},
    {a:'장오귀스트 앵그르',t:'그랑드 오달리스크',y:'1814',w:'Grande Odalisque'}
   ]},
  {id:'romantic',name:'낭만주의',per:'19세기 전반',c:'#b5543a',
@@ -119,8 +119,8 @@ window.ERAS = [
   works:[
    {a:'구스타프 클림트',t:'키스',y:'1908',w:'The Kiss (Klimt)'},
    {a:'구스타프 클림트',t:'아델레 블로흐바우어의 초상 I',y:'1907',w:'Portrait of Adele Bloch-Bauer I'},
-   {a:'구스타프 클림트',t:'유디트',y:'1901',w:'Judith and the Head of Holofernes'},
-   {a:'알폰스 무하',t:'지스몽다 포스터',y:'1894',q:'Alphonse Mucha Gismonda poster'}
+   {a:'구스타프 클림트',t:'유디트 I',y:'1901',c:'Gustav Klimt Judith I 1901 Belvedere'},
+   {a:'알폰스 무하',t:'지스몽다 포스터',y:'1894',c:'Mucha Gismonda poster 1894'}
   ]},
  {id:'fauvism',name:'야수파',per:'1905~1908',c:'#e2553d',
   desc:'“야수들 같다”는 말을 들을 만큼 강렬한 원색! 하늘이 노랗고 얼굴이 초록이어도 OK. 색을 감정 표현의 도구로 해방시켰어요.',
@@ -130,14 +130,14 @@ window.ERAS = [
    {a:'앙리 마티스',t:'삶의 기쁨',y:'1906',w:'Le bonheur de vivre'},
    {a:'앙리 마티스',t:'춤',y:'1910',w:'Dance (Matisse)'},
    {a:'앙리 마티스',t:'붉은색의 조화',y:'1908',w:'The Dessert: Harmony in Red'},
-   {a:'앙드레 드랭',t:'채링 크로스 다리',y:'1906',q:'André Derain Charing Cross Bridge London painting'}
+   {a:'앙드레 드랭',t:'채링 크로스 다리',y:'1906',c:'André Derain Charing Cross Bridge 1906'}
   ]},
  {id:'expression',name:'표현주의',per:'1890~1920년대',c:'#4f7a3a',
   desc:'눈에 보이는 모습보다 마음속 불안·공포·고독을 드러내는 것이 중요! 일그러진 형태와 날카롭고 강한 색이 특징이에요.',
   tips:['일그러지고 과장된 형태','불안한 감정의 분출','거칠고 날카로운 선'],
   works:[
    {a:'에드바르 뭉크',t:'절규',y:'1893',w:'The Scream'},
-   {a:'에른스트 루트비히 키르히너',t:'거리, 드레스덴',y:'1908',w:'Street, Dresden'},
+   {a:'에른스트 루트비히 키르히너',t:'베를린 거리',y:'1913',w:'Street, Dresden'},
    {a:'프란츠 마르크',t:'큰 푸른 말들',y:'1911',w:'The Large Blue Horses',q:'Franz Marc The Large Blue Horses'},
    {a:'에곤 실레',t:'꽈리가 있는 자화상',y:'1912',w:'Self-Portrait with Physalis',q:'Egon Schiele Self-Portrait with Physalis'}
   ]},
@@ -145,10 +145,10 @@ window.ERAS = [
   desc:'여러 방향에서 본 모습을 조각조각 쪼개 한 화면에 다시 조립! 대상을 원통·원뿔·구 같은 기하학적인 면으로 단순화했어요.',
   tips:['여러 시점이 한 화면에','기하학적인 면으로 쪼갬','갈색·회색 위주의 차분한 색'],
   works:[
-   {a:'후안 그리스',t:'피카소의 초상',y:'1912',w:'Portrait of Pablo Picasso (Juan Gris)',q:'Juan Gris Portrait of Pablo Picasso 1912'},
-   {a:'장 메챙제',t:'티타임',y:'1911',w:'Tea Time (Woman with a Teaspoon)'},
-   {a:'페르낭 레제',t:'도시',y:'1919',q:'Fernand Léger The City 1919 painting'},
-   {a:'로베르 들로네',t:'에펠탑',y:'1911',q:'Robert Delaunay Eiffel Tower painting 1911'}
+   {a:'후안 그리스',t:'피카소의 초상',y:'1912',c:'Juan Gris Portrait of Pablo Picasso 1912'},
+   {a:'장 메챙제',t:'티타임',y:'1911',c:'Jean Metzinger Le goûter Tea Time 1911'},
+   {a:'후안 그리스',t:'체크 무늬 식탁보가 있는 정물',y:'1915',c:'Juan Gris Still Life with Checked Tablecloth 1915'},
+   {a:'로베르 들로네',t:'에펠탑',y:'1911',c:'Robert Delaunay Tour Eiffel 1911'}
   ]},
  {id:'futurism',name:'미래주의',per:'1909~1916',c:'#d97a2b',
   desc:'이탈리아에서 시작된 “속도의 미술”. 기계·자동차·도시의 에너지를 찬양하며 움직이는 모습을 여러 겹으로 겹쳐 그렸어요.',
@@ -164,8 +164,8 @@ window.ERAS = [
   tips:['알아볼 수 있는 대상이 없음','순수한 색·선·도형','뜨거운 추상 vs 차가운 추상'],
   works:[
    {a:'바실리 칸딘스키',t:'구성 VII',y:'1913',w:'Composition VII'},
-   {a:'바실리 칸딘스키',t:'노랑-빨강-파랑',y:'1925',q:'Kandinsky Yellow-Red-Blue 1925'},
-   {a:'피트 몬드리안',t:'빨강·파랑·노랑의 구성 II',y:'1930',w:'Composition II in Red, Blue, and Yellow'},
+   {a:'바실리 칸딘스키',t:'노랑-빨강-파랑',y:'1925',c:'Kandinsky Gelb-Rot-Blau 1925'},
+   {a:'피트 몬드리안',t:'빨강·파랑·노랑의 구성',y:'1930',c:'Piet Mondrian Composition with Red Blue and Yellow 1930'},
    {a:'피트 몬드리안',t:'브로드웨이 부기우기',y:'1943',w:'Broadway Boogie Woogie'},
    {a:'카지미르 말레비치',t:'검은 사각형',y:'1915',w:'Black Square (painting)'}
   ]}
