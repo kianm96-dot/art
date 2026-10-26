@@ -1,1 +1,567 @@
-{"images":{},"failed":[]}
+{
+ "images": {
+  "gothic-0": {
+   "file": "gothic-0.jpg",
+   "w": "Maestà (Duccio)",
+   "q": null,
+   "page": "Maestà (Duccio)",
+   "source": "https://commons.wikimedia.org/wiki/File:Duccio_maesta1021.jpg"
+  },
+  "gothic-1": {
+   "file": "gothic-1.jpg",
+   "w": "Santa Trinita Maestà",
+   "q": null,
+   "page": "Santa Trinita Maestà",
+   "source": "https://commons.wikimedia.org/wiki/File:Cimabue_-_Maestà_di_Santa_Trinita_-_Google_Art_Project.jpg"
+  },
+  "gothic-2": {
+   "file": "gothic-2.jpg",
+   "w": "Annunciation with St. Margaret and St. Ansanus",
+   "q": null,
+   "page": "Annunciation with Saint Margaret and Saint Ansanus",
+   "source": "https://commons.wikimedia.org/wiki/File:Simone_Martini_—_Annunciation_with_St._Margaret_and_St._Ansanus.jpg"
+  },
+  "gothic-3": {
+   "file": "gothic-3.jpg",
+   "w": "Lamentation (The Mourning of Christ)",
+   "q": "Giotto Lamentation Mourning of Christ Scrovegni",
+   "page": "Lamentation (The Mourning of Christ)",
+   "source": "https://commons.wikimedia.org/wiki/File:Compianto_sul_Cristo_morto.jpg"
+  },
+  "renaissance-0": {
+   "file": "renaissance-0.jpg",
+   "w": "The Birth of Venus",
+   "q": null,
+   "page": "The Birth of Venus",
+   "source": "https://commons.wikimedia.org/wiki/File:Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg"
+  },
+  "renaissance-1": {
+   "file": "renaissance-1.jpg",
+   "w": "Mona Lisa",
+   "q": null,
+   "page": "Mona Lisa",
+   "source": "https://commons.wikimedia.org/wiki/File:Mona_Lisa.jpg"
+  },
+  "renaissance-2": {
+   "file": "renaissance-2.jpg",
+   "w": "The Last Supper (Leonardo)",
+   "q": null,
+   "page": "The Last Supper (Leonardo)",
+   "source": "https://commons.wikimedia.org/wiki/File:The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg"
+  },
+  "renaissance-3": {
+   "file": "renaissance-3.jpg",
+   "w": "The School of Athens",
+   "q": null,
+   "page": "The School of Athens",
+   "source": "https://commons.wikimedia.org/wiki/File:\"The_School_of_Athens\"_by_Raffaello_Sanzio_da_Urbino.jpg"
+  },
+  "renaissance-4": {
+   "file": "renaissance-4.jpg",
+   "w": "The Creation of Adam",
+   "q": null,
+   "page": "The Creation of Adam",
+   "source": "https://commons.wikimedia.org/wiki/File:Michelangelo_-_Creation_of_Adam_(cropped).jpg"
+  },
+  "renaissance-5": {
+   "file": "renaissance-5.jpg",
+   "w": "Venus of Urbino",
+   "q": null,
+   "page": "Venus of Urbino",
+   "source": "https://commons.wikimedia.org/wiki/File:Tiziano_-_Venere_di_Urbino_-_Google_Art_Project.jpg"
+  },
+  "northern-0": {
+   "file": "northern-0.jpg",
+   "w": "Arnolfini Portrait",
+   "q": null,
+   "page": "Arnolfini Portrait",
+   "source": "https://commons.wikimedia.org/wiki/File:The_Arnolfini_portrait_(1434).jpg"
+  },
+  "northern-1": {
+   "file": "northern-1.jpg",
+   "w": "The Garden of Earthly Delights",
+   "q": null,
+   "page": "The Garden of Earthly Delights",
+   "source": "https://commons.wikimedia.org/wiki/File:The_Garden_of_earthly_delights.jpg"
+  },
+  "northern-2": {
+   "file": "northern-2.jpg",
+   "w": "The Hunters in the Snow",
+   "q": null,
+   "page": "The Hunters in the Snow",
+   "source": "https://commons.wikimedia.org/wiki/File:Pieter_Bruegel_the_Elder_-_Hunters_in_the_Snow_(Winter)_-_Google_Art_Project.jpg"
+  },
+  "northern-3": {
+   "file": "northern-3.jpg",
+   "w": "Self-Portrait (Dürer, Munich)",
+   "q": null,
+   "page": "Self-Portrait (Dürer, Munich)",
+   "source": "https://commons.wikimedia.org/wiki/File:Dürer_Alte_Pinakothek.jpg"
+  },
+  "northern-4": {
+   "file": "northern-4.jpg",
+   "w": "The Ambassadors (Holbein)",
+   "q": null,
+   "page": "The Ambassadors (Holbein)",
+   "source": "https://commons.wikimedia.org/wiki/File:Hans_Holbein_the_Younger_-_The_Ambassadors_-_Google_Art_Project.jpg"
+  },
+  "mannerism-0": {
+   "file": "mannerism-0.jpg",
+   "w": "Madonna with the Long Neck",
+   "q": null,
+   "page": "Madonna with the Long Neck",
+   "source": "https://commons.wikimedia.org/wiki/File:Parmigianino_-_Madonna_and_Child_with_Angels,_known_as_the_Madonna_with_the_Long_Neck.jpg"
+  },
+  "mannerism-1": {
+   "file": "mannerism-1.jpg",
+   "w": "The Burial of the Count of Orgaz",
+   "q": null,
+   "page": "The Burial of the Count of Orgaz",
+   "source": "https://commons.wikimedia.org/wiki/File:El_Greco_-_The_Burial_of_the_Count_of_Orgaz.JPG"
+  },
+  "mannerism-2": {
+   "file": "mannerism-2.jpg",
+   "w": "Venus, Cupid, Folly and Time",
+   "q": null,
+   "page": "Venus, Cupid, Folly and Time",
+   "source": "https://commons.wikimedia.org/wiki/File:Angelo_Bronzino_-_Venus,_Cupid,_Folly_and_Time_-_National_Gallery,_London.jpg"
+  },
+  "mannerism-3": {
+   "file": "mannerism-3.jpg",
+   "w": "Deposition from the Cross (Pontormo)",
+   "q": "Pontormo Deposition Santa Felicita",
+   "page": "The Deposition from the Cross (Pontormo)",
+   "source": "https://commons.wikimedia.org/wiki/File:Jacopo_Pontormo_-_Kreuzabnahme_Christi.jpg"
+  },
+  "baroque-0": {
+   "file": "baroque-0.jpg",
+   "w": "The Calling of Saint Matthew",
+   "q": null,
+   "page": "The Calling of Saint Matthew",
+   "source": "https://commons.wikimedia.org/wiki/File:Caravaggio_—_The_Calling_of_Saint_Matthew.jpg"
+  },
+  "baroque-1": {
+   "file": "baroque-1.jpg",
+   "w": "The Night Watch",
+   "q": null,
+   "page": "The Night Watch",
+   "source": "https://commons.wikimedia.org/wiki/File:La_ronda_de_noche,_por_Rembrandt_van_Rijn.jpg"
+  },
+  "baroque-2": {
+   "file": "baroque-2.jpg",
+   "w": "Las Meninas",
+   "q": null,
+   "page": "Las Meninas",
+   "source": "https://commons.wikimedia.org/wiki/File:Las_Meninas,_by_Diego_Velázquez,_from_Prado_in_Google_Earth.jpg"
+  },
+  "baroque-3": {
+   "file": "baroque-3.jpg",
+   "w": "Girl with a Pearl Earring",
+   "q": null,
+   "page": "Girl with a Pearl Earring",
+   "source": "https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg"
+  },
+  "baroque-4": {
+   "file": "baroque-4.png",
+   "w": "The Milkmaid (Vermeer)",
+   "q": null,
+   "page": "The Milkmaid (Vermeer)",
+   "source": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.png"
+  },
+  "baroque-5": {
+   "file": "baroque-5.jpg",
+   "w": "The Elevation of the Cross (Rubens)",
+   "q": "Rubens Elevation of the Cross Antwerp",
+   "page": "The Elevation of the Cross (Rubens)",
+   "source": "https://commons.wikimedia.org/wiki/File:Peter_Paul_Rubens_-_Raising_of_the_Cross_(Antwerp_Cathedral).JPG"
+  },
+  "rococo-0": {
+   "file": "rococo-0.jpg",
+   "w": "The Swing (Fragonard)",
+   "q": null,
+   "page": "The Swing (Fragonard)",
+   "source": "https://commons.wikimedia.org/wiki/File:The_Swing_(P430).jpg"
+  },
+  "rococo-1": {
+   "file": "rococo-1.jpg",
+   "w": "Pilgrimage to Cythera",
+   "q": null,
+   "page": "The Embarkation for Cythera",
+   "source": "https://commons.wikimedia.org/wiki/File:L'Embarquement_pour_Cythère,_by_Antoine_Watteau,_from_C2RMF_retouched.jpg"
+  },
+  "rococo-2": {
+   "file": "rococo-2.jpg",
+   "w": "Young Girl Reading",
+   "q": null,
+   "page": "A Young Girl Reading",
+   "source": "https://commons.wikimedia.org/wiki/File:Fragonard,_The_Reader.jpg"
+  },
+  "rococo-3": {
+   "file": "rococo-3.jpg",
+   "w": "Diana Leaving Her Bath",
+   "q": "Boucher Diana Leaving her Bath painting",
+   "page": "Diana Bathing (Boucher)",
+   "source": "https://commons.wikimedia.org/wiki/File:François_Boucher_-_Diana_Resting_after_her_Bath,_1742.jpg"
+  },
+  "neoclassic-0": {
+   "file": "neoclassic-0.jpg",
+   "w": "Oath of the Horatii",
+   "q": null,
+   "page": "Oath of the Horatii",
+   "source": "https://commons.wikimedia.org/wiki/File:Le_Serment_des_Horaces_-_Jacques-Louis_David_-_Musée_du_Louvre_Peintures_INV_3692_;_MR_1432.jpg"
+  },
+  "neoclassic-1": {
+   "file": "neoclassic-1.jpg",
+   "w": "The Death of Marat",
+   "q": null,
+   "page": "The Death of Marat",
+   "source": "https://commons.wikimedia.org/wiki/File:Death_of_Marat_by_David.jpg"
+  },
+  "neoclassic-3": {
+   "file": "neoclassic-3.jpg",
+   "w": "Grande Odalisque",
+   "q": null,
+   "page": "Grande Odalisque",
+   "source": "https://commons.wikimedia.org/wiki/File:La_grande_odalisque_-_Jean-Auguste_Dominique_Ingres_-_Musée_du_Louvre_Peintures_RF_1158.jpg"
+  },
+  "romantic-0": {
+   "file": "romantic-0.jpg",
+   "w": "Liberty Leading the People",
+   "q": null,
+   "page": "Liberty Leading the People",
+   "source": "https://commons.wikimedia.org/wiki/File:La_Liberté_guidant_le_peuple_-_Eugène_Delacroix_-_Musée_du_Louvre_Peintures_RF_129_-_après_restauration_2024.jpg"
+  },
+  "romantic-1": {
+   "file": "romantic-1.jpg",
+   "w": "The Raft of the Medusa",
+   "q": null,
+   "page": "The Raft of the Medusa",
+   "source": "https://commons.wikimedia.org/wiki/File:JEAN_LOUIS_THÉODORE_GÉRICAULT_-_La_Balsa_de_la_Medusa_(Museo_del_Louvre,_1818-19).jpg"
+  },
+  "romantic-2": {
+   "file": "romantic-2.jpg",
+   "w": "Wanderer above the Sea of Fog",
+   "q": null,
+   "page": "Wanderer Above the Sea of Fog",
+   "source": "https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg"
+  },
+  "romantic-3": {
+   "file": "romantic-3.jpg",
+   "w": "The Third of May 1808",
+   "q": null,
+   "page": "The Third of May 1808",
+   "source": "https://commons.wikimedia.org/wiki/File:El_Tres_de_Mayo,_by_Francisco_de_Goya,_from_Prado_thin_black_margin.jpg"
+  },
+  "romantic-4": {
+   "file": "romantic-4.jpg",
+   "w": "The Fighting Temeraire",
+   "q": null,
+   "page": "The Fighting Temeraire",
+   "source": "https://commons.wikimedia.org/wiki/File:The_Fighting_Temeraire,_JMW_Turner,_National_Gallery.jpg"
+  },
+  "realism-0": {
+   "file": "realism-0.jpg",
+   "w": "The Gleaners",
+   "q": null,
+   "page": "The Gleaners",
+   "source": "https://commons.wikimedia.org/wiki/File:Jean-François_Millet_-_Gleaners_-_Google_Art_Project_2.jpg"
+  },
+  "realism-1": {
+   "file": "realism-1.jpg",
+   "w": "The Angelus (painting)",
+   "q": null,
+   "page": "The Angelus (painting)",
+   "source": "https://commons.wikimedia.org/wiki/File:JEAN-FRANÇOIS_MILLET_-_El_Ángelus_(Museo_de_Orsay,_1857-1859._Óleo_sobre_lienzo,_55.5_x_66_cm).jpg"
+  },
+  "realism-2": {
+   "file": "realism-2.jpg",
+   "w": "The Stone Breakers",
+   "q": null,
+   "page": "The Stone Breakers",
+   "source": "https://commons.wikimedia.org/wiki/File:Gustave_Courbet_-_The_Stonebreakers_-_WGA05457.jpg"
+  },
+  "realism-3": {
+   "file": "realism-3.jpg",
+   "w": "A Burial at Ornans",
+   "q": null,
+   "page": "A Burial at Ornans",
+   "source": "https://commons.wikimedia.org/wiki/File:Gustave_Courbet_-_A_Burial_at_Ornans_-_Google_Art_Project_2.jpg"
+  },
+  "realism-4": {
+   "file": "realism-4.jpg",
+   "w": "The Third-Class Carriage",
+   "q": null,
+   "page": "The Third-Class Carriage",
+   "source": "https://commons.wikimedia.org/wiki/File:Honoré_Daumier,_The_Third-Class_Carriage_-_The_Metropolitan_Museum_of_Art.jpg"
+  },
+  "impression-0": {
+   "file": "impression-0.jpg",
+   "w": "Impression, Sunrise",
+   "q": null,
+   "page": "Impression, Sunrise",
+   "source": "https://commons.wikimedia.org/wiki/File:Monet_-_Impression,_Sunrise.jpg"
+  },
+  "impression-1": {
+   "file": "impression-1.jpg",
+   "w": null,
+   "q": "Woman with a Parasol Madame Monet and Her Son",
+   "page": "Woman with a Parasol – Madame Monet and Her Son",
+   "source": "https://commons.wikimedia.org/wiki/File:Claude_Monet_-_Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son_-_Google_Art_Project.jpg"
+  },
+  "impression-2": {
+   "file": "impression-2.jpg",
+   "w": "Bal du moulin de la Galette",
+   "q": null,
+   "page": "Bal du moulin de la Galette",
+   "source": "https://commons.wikimedia.org/wiki/File:Renoir,_Pierre-Auguste_-_Dance_at_Le_Moulin_de_la_Galette,_1876.jpg"
+  },
+  "impression-3": {
+   "file": "impression-3.jpg",
+   "w": "Luncheon of the Boating Party",
+   "q": null,
+   "page": "Luncheon of the Boating Party",
+   "source": "https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir_-_Luncheon_of_the_Boating_Party_-_Google_Art_Project.jpg"
+  },
+  "impression-4": {
+   "file": "impression-4.jpg",
+   "w": "The Dance Class (Degas)",
+   "q": "Degas The Dance Class 1874 painting",
+   "page": "The Dance Class (Degas, Metropolitan Museum of Art)",
+   "source": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_The_Dance_Class.jpg"
+  },
+  "impression-5": {
+   "file": "impression-5.jpg",
+   "w": "Paris Street; Rainy Day",
+   "q": null,
+   "page": "Paris Street; Rainy Day",
+   "source": "https://commons.wikimedia.org/wiki/File:Gustave_Caillebotte_-_Paris_Street;_Rainy_Day_-_Google_Art_Project.jpg"
+  },
+  "postimp-0": {
+   "file": "postimp-0.jpg",
+   "w": "The Starry Night",
+   "q": null,
+   "page": "The Starry Night",
+   "source": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+  },
+  "postimp-1": {
+   "file": "postimp-1.jpg",
+   "w": "Sunflowers (Van Gogh series)",
+   "q": null,
+   "page": "Sunflowers (Van Gogh series)",
+   "source": "https://commons.wikimedia.org/wiki/File:Vincent_Willem_van_Gogh_127.jpg"
+  },
+  "postimp-2": {
+   "file": "postimp-2.jpg",
+   "w": "A Sunday Afternoon on the Island of La Grande Jatte",
+   "q": null,
+   "page": "A Sunday Afternoon on the Island of La Grande Jatte",
+   "source": "https://commons.wikimedia.org/wiki/File:A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg"
+  },
+  "postimp-3": {
+   "file": "postimp-3.jpg",
+   "w": "The Card Players",
+   "q": null,
+   "page": "The Card Players",
+   "source": "https://commons.wikimedia.org/wiki/File:Les_Joueurs_de_cartes,_par_Paul_Cézanne.jpg"
+  },
+  "postimp-4": {
+   "file": "postimp-4.jpg",
+   "w": "Where Do We Come From? What Are We? Where Are We Going?",
+   "q": null,
+   "page": "Where Do We Come From? What Are We? Where Are We Going?",
+   "source": "https://commons.wikimedia.org/wiki/File:Gauguin_-_Where_Do_We_Come_From?_What_Are_We?_Where_Are_We_Going?_(1897-98).jpg"
+  },
+  "postimp-5": {
+   "file": "postimp-5.jpg",
+   "w": "Mont Sainte-Victoire (Cézanne)",
+   "q": null,
+   "page": "Mont Sainte-Victoire (Cézanne)",
+   "source": "https://commons.wikimedia.org/wiki/File:Paul_Cézanne_-_Montagne_Saint-victoire_-_Google_Art_Project.jpg"
+  },
+  "nouveau-0": {
+   "file": "nouveau-0.jpg",
+   "w": "The Kiss (Klimt)",
+   "q": null,
+   "page": "The Kiss (Klimt)",
+   "source": "https://commons.wikimedia.org/wiki/File:The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg"
+  },
+  "nouveau-1": {
+   "file": "nouveau-1.jpg",
+   "w": "Portrait of Adele Bloch-Bauer I",
+   "q": null,
+   "page": "Portrait of Adele Bloch-Bauer I",
+   "source": "https://commons.wikimedia.org/wiki/File:Gustav_Klimt_046.jpg"
+  },
+  "nouveau-2": {
+   "file": "nouveau-2.jpg",
+   "w": "Judith and the Head of Holofernes",
+   "q": null,
+   "page": "Judith beheading Holofernes",
+   "source": "https://commons.wikimedia.org/wiki/File:Judit_decapitando_a_Holofernes,_por_Artemisia_Gentileschi.jpg"
+  },
+  "nouveau-3": {
+   "file": "nouveau-3.jpg",
+   "w": null,
+   "q": "Alphonse Mucha Gismonda poster",
+   "page": "Alphonse Mucha",
+   "source": "https://commons.wikimedia.org/wiki/File:Photographic_selfportrait_of_Alfons_Mucha,_1928_(2).jpg"
+  },
+  "fauvism-0": {
+   "file": "fauvism-0.jpg",
+   "w": "Woman with a Hat",
+   "q": null,
+   "page": "Woman with a Hat",
+   "source": "https://commons.wikimedia.org/wiki/File:Matisse-Woman-with-a-Hat.jpg"
+  },
+  "fauvism-1": {
+   "file": "fauvism-1.jpg",
+   "w": "Le bonheur de vivre",
+   "q": null,
+   "page": "Le bonheur de vivre",
+   "source": "https://commons.wikimedia.org/wiki/File:Bonheur_Matisse.jpg"
+  },
+  "fauvism-2": {
+   "file": "fauvism-2.jpg",
+   "w": "Dance (Matisse)",
+   "q": null,
+   "page": "Dance (Matisse)",
+   "source": "https://commons.wikimedia.org/wiki/File:Matissedance.jpg"
+  },
+  "fauvism-3": {
+   "file": "fauvism-3.jpg",
+   "w": "The Dessert: Harmony in Red",
+   "q": null,
+   "page": "The Dessert: Harmony in Red (The Red Room)",
+   "source": "https://commons.wikimedia.org/wiki/File:Matisse-The-Dessert-Harmony-in-Red-Henri-1908-fast.jpg"
+  },
+  "fauvism-4": {
+   "file": "fauvism-4.jpg",
+   "w": null,
+   "q": "André Derain Charing Cross Bridge London painting",
+   "page": "André Derain",
+   "source": "https://commons.wikimedia.org/wiki/File:André_Derain,_circa_1903.jpg"
+  },
+  "expression-0": {
+   "file": "expression-0.jpg",
+   "w": "The Scream",
+   "q": null,
+   "page": "The Scream",
+   "source": "https://commons.wikimedia.org/wiki/File:Edvard_Munch,_1893,_The_Scream,_oil,_tempera_and_pastel_on_cardboard,_91_x_73_cm,_National_Gallery_of_Norway.jpg"
+  },
+  "expression-1": {
+   "file": "expression-1.jpg",
+   "w": "Street, Dresden",
+   "q": null,
+   "page": "Street, Berlin (Kirchner)",
+   "source": "https://commons.wikimedia.org/wiki/File:Kirchner_1913_Street,_Berlin.jpg"
+  },
+  "expression-2": {
+   "file": "expression-2.jpg",
+   "w": "The Large Blue Horses",
+   "q": "Franz Marc The Large Blue Horses",
+   "page": "Blue Horses",
+   "source": "https://commons.wikimedia.org/wiki/File:Large_Blue_Horses.jpg"
+  },
+  "expression-3": {
+   "file": "expression-3.jpg",
+   "w": "Self-Portrait with Physalis",
+   "q": "Egon Schiele Self-Portrait with Physalis",
+   "page": "Egon Schiele",
+   "source": "https://commons.wikimedia.org/wiki/File:Egon_Schiele_-_Self-Portrait_with_Physalis_-_Google_Art_Project.jpg"
+  },
+  "cubism-0": {
+   "file": "cubism-0.jpg",
+   "w": "Portrait of Pablo Picasso (Juan Gris)",
+   "q": "Juan Gris Portrait of Pablo Picasso 1912",
+   "page": "Daniel-Henry Kahnweiler (Picasso)",
+   "source": "https://commons.wikimedia.org/wiki/File:Picasso_Portrait_of_Daniel-Henry_Kahnweiler_1910.jpg"
+  },
+  "cubism-1": {
+   "file": "cubism-1.jpg",
+   "w": "Tea Time (Woman with a Teaspoon)",
+   "q": null,
+   "page": "Tea",
+   "source": "https://commons.wikimedia.org/wiki/File:Longjing_tea_steeping_in_gaiwan.jpg"
+  },
+  "cubism-2": {
+   "file": "cubism-2.jpg",
+   "w": null,
+   "q": "Fernand Léger The City 1919 painting",
+   "page": "Fernand Léger",
+   "source": "https://commons.wikimedia.org/wiki/File:Signature_of_Fernand_Léger,_1926.JPG"
+  },
+  "cubism-3": {
+   "file": "cubism-3.jpg",
+   "w": null,
+   "q": "Robert Delaunay Eiffel Tower painting 1911",
+   "page": "Eiffel Tower (Delaunay series)",
+   "source": "https://commons.wikimedia.org/wiki/File:Eiffel_trocadero_i.jpg"
+  },
+  "futurism-0": {
+   "file": "futurism-0.jpg",
+   "w": "The City Rises",
+   "q": null,
+   "page": "The City Rises",
+   "source": "https://commons.wikimedia.org/wiki/File:The_City_Rises_by_Umberto_Boccioni_1910.jpg"
+  },
+  "futurism-1": {
+   "file": "futurism-1.jpg",
+   "w": "Dynamism of a Dog on a Leash",
+   "q": null,
+   "page": "Dynamism of a Dog on a Leash",
+   "source": "https://commons.wikimedia.org/wiki/File:Giacomo_Balla,_1912,_Dynamism_of_a_Dog_on_a_Leash,_oil_on_canvas,_89.8_x_109.8_cm,_Albright-Knox_Art_Gallery.jpg"
+  },
+  "futurism-2": {
+   "file": "futurism-2.jpg",
+   "w": null,
+   "q": "Boccioni Dynamism of a Cyclist",
+   "page": "Dynamism of a Cyclist",
+   "source": "https://commons.wikimedia.org/wiki/File:Umberto_Boccioni,_1913,_Dynamism_of_a_Cyclist_(Dinamismo_di_un_ciclista),_oil_on_canvas,_70_x_95_cm,_Gianni_Mattioli_Collection,_on_long-term_loan_to_the_Peggy_Guggenheim_Collection,_Venice.jpg"
+  },
+  "futurism-3": {
+   "file": "futurism-3.jpg",
+   "w": null,
+   "q": "Luigi Russolo Dynamism of a Car",
+   "page": "Dynamism of a Car",
+   "source": "https://commons.wikimedia.org/wiki/File:Luigi_Russolo_dynamism-of-a-car-1913.jpg"
+  },
+  "abstract-0": {
+   "file": "abstract-0.jpg",
+   "w": "Composition VII",
+   "q": null,
+   "page": "Composition VII",
+   "source": "https://commons.wikimedia.org/wiki/File:Composition_VII_-_Wassily_Kandinsky,_GAC.jpg"
+  },
+  "abstract-1": {
+   "file": "abstract-1.jpg",
+   "w": null,
+   "q": "Kandinsky Yellow-Red-Blue 1925",
+   "page": "Wassily Kandinsky",
+   "source": "https://commons.wikimedia.org/wiki/File:Kandinsky_-_Vassily_Kandinsky_by_Adolf_Elnain_Photo_credits_-_Georges_Meguerditchian.jpg"
+  },
+  "abstract-2": {
+   "file": "abstract-2.jpg",
+   "w": "Composition II in Red, Blue, and Yellow",
+   "q": null,
+   "page": "Piet Mondrian",
+   "source": "https://commons.wikimedia.org/wiki/File:Piet_Mondriaan.jpg"
+  },
+  "abstract-3": {
+   "file": "abstract-3.jpg",
+   "w": "Broadway Boogie Woogie",
+   "q": null,
+   "page": "Broadway Boogie Woogie",
+   "source": "https://commons.wikimedia.org/wiki/File:Piet_Mondrian,_1942_-_Broadway_Boogie_Woogie.jpg"
+  },
+  "abstract-4": {
+   "file": "abstract-4.jpg",
+   "w": "Black Square (painting)",
+   "q": null,
+   "page": "Black Square",
+   "source": "https://commons.wikimedia.org/wiki/File:Kazimir_Malevich,_1915,_Black_Suprematic_Square,_oil_on_linen_canvas,_79.5_x_79.5_cm,_Tretyakov_Gallery,_Moscow.jpg"
+  }
+ },
+ "failed": [
+  "neoclassic-2 자크루이 다비드 〈알프스를 넘는 나폴레옹〉"
+ ]
+}
