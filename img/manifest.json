@@ -569,9 +569,15 @@
    "c": "intitle:David intitle:Napoleon intitle:Alps -intitle:detail",
    "page": "File:Jacques-Louis David - Napoleon Crossing the Alps - Schloss Charlottenburg.jpg",
    "source": "https://commons.wikimedia.org/wiki/File:Jacques-Louis David - Napoleon Crossing the Alps - Schloss Charlottenburg.jpg"
+  },
+  "cubism-1": {
+   "file": "cubism-1.jpg",
+   "w": null,
+   "q": null,
+   "c": "intitle:Gleizes intitle:Balcony",
+   "page": "File:Albert Gleizes, Man on a Balcony, Walt Kuhn scrapbook of press clippings documenting the Armory Show, vol. 2, 1913, page 140.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Albert Gleizes, Man on a Balcony, Walt Kuhn scrapbook of press clippings documenting the Armory Show, vol. 2, 1913, page 140.jpg"
   }
  },
- "failed": [
-  "cubism-1 장 메챙제 〈티타임〉"
- ]
+ "failed": []
 }
