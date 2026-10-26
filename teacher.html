@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명화 타임머신 · 선생님</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#17130f;--bg2:#211b15;--panel:#2a221a;--line:#4a3c2c;--gold:#d6b25e;--gold2:#f2d78f;--ink:#f4ecdf;--muted:#b8a990;--ok:#5fbf7f;--bad:#e2685b}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+h1,h2{font-family:"Gowun Batang",serif;margin:0;color:var(--gold2)}
+.hidden{display:none!important}
+.head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0 18px}
+.head h1{font-size:28px}
+.head .sp{flex:1}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 14px;border-radius:999px;text-decoration:none;font-size:14px}
+.btn{background:var(--gold);color:#1d160e;border:0;border-radius:10px;padding:10px 18px;font-size:15px;font-weight:900}
+.danger{background:transparent;border:1px solid var(--bad);color:var(--bad);padding:7px 14px;border-radius:999px;font-size:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.login{max-width:380px;margin:60px auto;text-align:center;display:grid;gap:12px}
+.login input{background:#0004;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:12px;font-size:17px;text-align:center}
+.err{color:var(--bad);font-size:14px;min-height:20px}
+.classes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.classes button{background:transparent;border:1px solid var(--line);color:var(--ink);padding:8px 16px;border-radius:999px;font-size:15px}
+.classes button.on{background:var(--gold);color:#1d160e;border-color:var(--gold);font-weight:900}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.tabs{display:flex;gap:4px;background:#0003;border-radius:999px;padding:4px}
+.tabs button{background:transparent;border:0;color:var(--muted);padding:7px 16px;border-radius:999px;font-size:14px}
+.tabs button.on{background:var(--panel);color:var(--gold2);font-weight:700}
+.bar .sp{flex:1}
+.muted{color:var(--muted);font-size:13px}
+.auto{color:var(--muted);font-size:13px;display:flex;align-items:center;gap:6px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;min-width:120px}
+.stat b{display:block;font-size:24px;color:var(--gold2)}
+.stat span{color:var(--muted);font-size:13px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;white-space:nowrap}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
+th{background:var(--bg2);color:var(--muted);font-weight:500;position:sticky;top:0}
+td.num,th.num{text-align:right}
+tbody tr:hover{background:#ffffff08}
+tr.stu{cursor:pointer}
+tr.stu td:first-child::before{content:'▸ ';color:var(--muted)}
+tr.stu.open td:first-child::before{content:'▾ '}
+tr.sub td{background:#0002;color:var(--muted);font-size:13px;padding:6px 12px 6px 34px}
+.best{color:var(--gold2);font-weight:700}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>🖼️ 명화 타임머신 · 선생님</h1>
+    <div class="sp"></div>
+    <a class="ghost" href="/">게임 화면</a>
+    <button class="ghost hidden" id="logout">로그아웃</button>
+  </div>
+
+  <div class="card login" id="login">
+    <h2>선생님 비밀번호</h2>
+    <input id="pw" type="password" placeholder="비밀번호" autocomplete="current-password">
+    <button class="btn" id="go">들어가기</button>
+    <div class="err" id="lerr"></div>
+  </div>
+
+  <div id="main" class="hidden">
+    <div class="classes" id="classes"></div>
+    <div id="view" class="hidden">
+      <div class="bar">
+        <h2 id="title"></h2>
+        <div class="tabs"><button data-t="sum" class="on">학생별</button><button data-t="all">전체 기록</button></div>
+        <div class="sp"></div>
+        <label class="auto"><input type="checkbox" id="auto" checked> 20초마다 새로고침</label>
+        <button class="ghost" id="reload">새로고침</button>
+        <button class="ghost" id="csv">엑셀(CSV) 받기</button>
+        <button class="danger" id="clear">이 반 기록 지우기</button>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div class="tw"><table id="tbl"></table></div>
+      <p class="muted">점수는 설정(범위·난이도·문제 수)에 따라 기준이 달라요. 학생 줄을 누르면 그 학생의 모든 기록이 보여요.</p>
+    </div>
+    <div class="empty hidden" id="none">아직 기록이 없어요. 학생들이 게임을 한 판 끝내면 반이 여기에 나타나요.</div>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const RANGE={all:'전체',old:'고전',new:'근현대'}, DIFF={easy:'쉬움',hard:'어려움'};
+const MODE={quiz:'퀴즈',attack:'타임어택'};
+const setting=r=>`${RANGE[r.range]||r.range}·${DIFF[r.diff]||r.diff}`+(r.mode==='quiz'&&r.count?`·${r.count}문제`:'');
+const pct=r=>r.answered?Math.round(r.correct/r.answered*100):0;
+const fmtT=t=>{const d=new Date(t);return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;};
+let pass='', cur=null, recs=[], tab='sum', timer=null;
+try{ pass=sessionStorage.getItem('art-tpass')||''; }catch(e){}
+
+async function api(action,extra={}){
+  const r=await fetch('/api/teacher',{method:'POST',headers:{'Content-Type':'application/json','x-teacher-pass':encodeURIComponent(pass)},body:JSON.stringify({action,...extra})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok){ const e=new Error(j.error||('오류 '+r.status)); e.code=r.status; throw e; }
+  return j;
+}
+async function login(){
+  pass=$('#pw').value||pass; $('#lerr').textContent='';
+  try{
+    await loadClasses();
+    try{ sessionStorage.setItem('art-tpass',pass); }catch(e){}
+    $('#login').classList.add('hidden'); $('#main').classList.remove('hidden'); $('#logout').classList.remove('hidden');
+  }catch(e){ $('#lerr').textContent=e.message; pass=''; try{sessionStorage.removeItem('art-tpass');}catch(_){} }
+}
+$('#go').onclick=login;
+$('#pw').addEventListener('keydown',e=>{ if(e.key==='Enter') login(); });
+$('#logout').onclick=()=>{ try{sessionStorage.removeItem('art-tpass');}catch(e){} location.reload(); };
+
+async function loadClasses(){
+  const {classes}=await api('classes');
+  const box=$('#classes');
+  box.innerHTML=classes.map(c=>{const [g,k]=c.split('-');return `<button data-c="${c}" class="${c===cur?'on':''}">${g}학년 ${k}반</button>`;}).join('');
+  box.querySelectorAll('button').forEach(b=>b.onclick=()=>openClass(b.dataset.c));
+  $('#none').classList.toggle('hidden',classes.length>0);
+  if(!classes.includes(cur)){ cur=null; $('#view').classList.add('hidden'); }
+  return classes;
+}
+async function openClass(c){
+  cur=c;
+  document.querySelectorAll('#classes button').forEach(b=>b.classList.toggle('on',b.dataset.c===c));
+  const [g,k]=c.split('-'); $('#title').textContent=`${g}학년 ${k}반`;
+  $('#view').classList.remove('hidden');
+  await reload();
+}
+async function reload(){
+  if(!cur) return;
+  try{ recs=(await api('records',{cls:cur})).records; render(); }
+  catch(e){ if(e.code===403){ alert(e.message); location.reload(); } }
+}
+$('#reload').onclick=async()=>{ await loadClasses(); await reload(); };
+function tick(){ clearInterval(timer); if($('#auto').checked) timer=setInterval(()=>{ if(!document.hidden) reload(); },20000); }
+$('#auto').onchange=tick; tick();
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{ tab=b.dataset.t; document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b)); render(); });
+
+const open=new Set();
+function students(){
+  const m=new Map();
+  for(const r of recs){
+    const key=r.n+'|'+r.name;
+    if(!m.has(key)) m.set(key,{n:r.n,name:r.name,list:[]});
+    m.get(key).list.push(r);
+  }
+  return [...m.values()].sort((a,b)=>a.n-b.n||a.name.localeCompare(b.name));
+}
+const bestOf=(list,mode)=>list.filter(r=>r.mode===mode).reduce((b,r)=>!b||r.score>b.score?r:b,null);
+
+function render(){
+  const st=students();
+  const plays=recs.length, totalA=recs.reduce((s,r)=>s+r.answered,0), totalC=recs.reduce((s,r)=>s+r.correct,0);
+  $('#stats').innerHTML=`<div class="stat"><b>${st.length}명</b><span>참여 학생</span></div>
+    <div class="stat"><b>${plays}판</b><span>전체 플레이</span></div>
+    <div class="stat"><b>${totalA?Math.round(totalC/totalA*100):0}%</b><span>반 전체 정답률</span></div>`;
+  const t=$('#tbl');
+  if(!recs.length){ t.innerHTML='<tr><td class="empty">기록이 없어요.</td></tr>'; return; }
+  if(tab==='sum'){
+    t.innerHTML=`<thead><tr><th>번호·이름</th><th class="num">플레이</th><th class="num">퀴즈 최고점</th><th>설정</th><th class="num">타임어택 최고</th><th>설정</th><th class="num">평균 정답률</th><th>마지막</th></tr></thead><tbody>`+
+    st.map(s=>{
+      const q=bestOf(s.list,'quiz'), a=bestOf(s.list,'attack');
+      const A=s.list.reduce((x,r)=>x+r.answered,0), C=s.list.reduce((x,r)=>x+r.correct,0);
+      const last=Math.max(...s.list.map(r=>r.t)); const key=s.n+'|'+s.name; const isOpen=open.has(key);
+      let html=`<tr class="stu${isOpen?' open':''}" data-k="${esc(key)}"><td>${s.n}번 ${esc(s.name)}</td><td class="num">${s.list.length}</td>
+        <td class="num best">${q?q.score:'-'}</td><td>${q?`<span class="tag">${esc(setting(q))}</span>`:''}</td>
+        <td class="num best">${a?a.score:'-'}</td><td>${a?`<span class="tag">${esc(setting(a))}</span>`:''}</td>
+        <td class="num">${A?Math.round(C/A*100):0}%</td><td>${fmtT(last)}</td></tr>`;
+      if(isOpen) html+=s.list.slice().sort((x,y)=>y.t-x.t).map(r=>`<tr class="sub"><td colspan="8">${fmtT(r.t)} · ${MODE[r.mode]} · ${esc(setting(r))} · <b style="color:var(--ink)">${r.score}점</b> · ${r.correct}/${r.answered} 정답(${pct(r)}%) · 최고 연속 ${r.streak}</td></tr>`).join('');
+      return html;
+    }).join('')+'</tbody>';
+    t.querySelectorAll('tr.stu').forEach(tr=>tr.onclick=()=>{ const k=tr.dataset.k; open.has(k)?open.delete(k):open.add(k); render(); });
+  } else {
+    t.innerHTML=`<thead><tr><th>시각</th><th>번호·이름</th><th>모드</th><th>설정</th><th class="num">점수</th><th class="num">정답</th><th class="num">정답률</th><th class="num">최고 연속</th></tr></thead><tbody>`+
+    recs.slice().sort((a,b)=>b.t-a.t).map(r=>`<tr><td>${fmtT(r.t)}</td><td>${r.n}번 ${esc(r.name)}</td><td>${MODE[r.mode]}</td><td><span class="tag">${esc(setting(r))}</span></td>
+      <td class="num best">${r.score}</td><td class="num">${r.correct}/${r.answered}</td><td class="num">${pct(r)}%</td><td class="num">${r.streak}</td></tr>`).join('')+'</tbody>';
+  }
+}
+
+$('#csv').onclick=()=>{
+  if(!recs.length) return;
+  const rows=[['시각','학년','반','번호','이름','모드','범위','난이도','문제 수','점수','정답','푼 문제','정답률(%)','최고 연속']];
+  for(const r of recs.slice().sort((a,b)=>a.n-b.n||a.t-b.t)){
+    const d=new Date(r.t);
+    rows.push([`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`,r.g,r.c,r.n,r.name,MODE[r.mode],RANGE[r.range],DIFF[r.diff],r.count??'',r.score,r.correct,r.answered,pct(r),r.streak]);
+  }
+  const csv='﻿'+rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download=`명화타임머신_${cur}.csv`; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('#clear').onclick=async()=>{
+  const [g,k]=cur.split('-');
+  if(!confirm(`${g}학년 ${k}반의 기록 ${recs.length}개를 모두 지울까요? 되돌릴 수 없어요.`)) return;
+  try{ await api('clear',{cls:cur}); recs=[]; cur=null; $('#view').classList.add('hidden'); await loadClasses(); }
+  catch(e){ alert(e.message); }
+};
+
+if(pass) login();
+</script>
+</body>
+</html>

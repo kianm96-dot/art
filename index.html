@@ -39,6 +39,18 @@ h1,h2,h3{font-family:"Gowun Batang",serif;margin:0}
 .seg{display:flex;flex-wrap:wrap;gap:6px}
 .seg button{background:transparent;border:1px solid var(--line);color:var(--ink);padding:7px 14px;border-radius:999px;font-size:14px}
 .seg button.on{background:var(--gold);color:#1d160e;border-color:var(--gold);font-weight:700}
+.me{background:linear-gradient(160deg,#3a2c1b,var(--bg2));border:1px solid var(--gold);border-radius:16px;padding:16px 18px;margin-bottom:12px}
+.me .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.me .row>span{width:70px;color:var(--gold2);font-size:14px;font-weight:700}
+.me select,.me input{background:#0004;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:9px 10px;font-size:16px;font-family:inherit}
+.me em{font-style:normal;color:var(--muted);margin:0 6px 0 -2px}
+.me select{width:92px}.me .w-s{width:74px}.me .w-n{width:130px}
+.me input:focus,.me select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.me .bad{border-color:var(--bad)!important}
+.me .msg{color:var(--bad);font-size:13px;margin-top:8px;min-height:0}
+.saved{margin:4px 0 14px;font-size:14px;color:var(--muted)}
+.saved.ok{color:var(--ok)} .saved.err{color:var(--bad)}
+.saved button{margin-left:6px;background:transparent;border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:3px 10px}
 .note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:18px;line-height:1.6}
 
 /* ---------- 퀴즈 ---------- */
@@ -134,6 +146,7 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
   .frame{height:min(72vh,640px)}
 }
 @media (max-width:520px){
+  .me .row>span{width:100%}
   .choice{font-size:16px;padding:12px 10px}
   .frame{border-width:9px;height:46vh}
   .opt>span{width:100%}
@@ -149,6 +162,16 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
       <div class="eyebrow">ART HISTORY QUIZ</div>
       <h1>명화 타임머신</h1>
       <p>그림 한 점을 보고, 어느 시대·양식인지 맞혀 보세요!</p>
+    </div>
+
+    <div class="me" id="me">
+      <div class="row"><span>내 정보</span>
+        <select id="me-g"><option value="">학년</option><option value="1">1학년</option><option value="2">2학년</option><option value="3">3학년</option></select>
+        <input id="me-c" class="w-s" type="number" inputmode="numeric" min="1" max="20" placeholder="반"><em>반</em>
+        <input id="me-n" class="w-s" type="number" inputmode="numeric" min="1" max="60" placeholder="번호"><em>번</em>
+        <input id="me-name" class="w-n" maxlength="12" placeholder="이름" autocomplete="off">
+      </div>
+      <div class="msg" id="me-msg"></div>
     </div>
 
     <div class="opts">
@@ -197,6 +220,7 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
   <!-- 퀴즈 -->
   <section id="quiz" class="hidden">
     <div class="topbar">
+      <div class="pill" id="q-who"></div>
       <div class="pill" id="q-prog"></div>
       <div class="pill">점수 <b id="q-score">0</b></div>
       <div class="pill" id="q-streak">🔥 0연속</div>
@@ -225,6 +249,7 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
       <div class="big" id="r-score"></div>
       <div class="sub" id="r-detail"></div>
       <div class="msg" id="r-msg"></div>
+      <div class="saved" id="r-saved"></div>
       <div class="btns">
         <button class="btn" id="r-again">다시 하기</button>
         <button class="btn alt" id="r-home">처음으로</button>
@@ -243,7 +268,7 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
     <div class="eradetail hidden" id="d-detail"></div>
   </section>
 
-  <footer>그림 출처: Wikipedia / Wikimedia Commons (퍼블릭 도메인 작품)</footer>
+  <footer>그림 출처: Wikipedia / Wikimedia Commons (퍼블릭 도메인 작품) · <a href="/teacher" style="color:#7d705c">선생님 페이지</a></footer>
 </div>
 
 <div class="lb hidden" id="lb"><img alt=""></div>
@@ -304,6 +329,39 @@ document.querySelectorAll('.mode').forEach(b=>b.addEventListener('click',()=>{
   const m=b.dataset.mode; if(m==='dex') openDex(); else startGame(m);
 }));
 
+/* ---------- 학생 정보 ---------- */
+const ME_KEY='arthist-me';
+const meEls={g:$('#me-g'),c:$('#me-c'),n:$('#me-n'),name:$('#me-name')};
+(function(){ const m=store(ME_KEY); if(m){ meEls.g.value=m.grade||''; meEls.c.value=m.cls||''; meEls.n.value=m.num||''; meEls.name.value=m.name||''; } })();
+function readMe(){
+  const g=+meEls.g.value, c=+meEls.c.value, n=+meEls.n.value, name=meEls.name.value.trim();
+  const bad=[];
+  if(!(g>=1&&g<=3)) bad.push(meEls.g);
+  if(!(Number.isInteger(c)&&c>=1&&c<=20)) bad.push(meEls.c);
+  if(!(Number.isInteger(n)&&n>=1&&n<=60)) bad.push(meEls.n);
+  if(!name) bad.push(meEls.name);
+  Object.values(meEls).forEach(el=>el.classList.toggle('bad',bad.includes(el)));
+  if(bad.length){ $('#me-msg').textContent='게임을 시작하려면 학년·반·번호·이름을 모두 적어 주세요.'; bad[0].focus(); return null; }
+  $('#me-msg').textContent='';
+  const me={grade:g,cls:c,num:n,name}; store(ME_KEY,me); return me;
+}
+Object.values(meEls).forEach(el=>el.addEventListener('input',()=>{ el.classList.remove('bad'); $('#me-msg').textContent=''; }));
+const meLabel=m=>`${m.grade}학년 ${m.cls}반 ${m.num}번 ${m.name}`;
+
+async function saveScore(rec){
+  const box=$('#r-saved');
+  box.className='saved'; box.textContent='💾 선생님께 기록을 보내는 중…';
+  try{
+    const r=await fetch('/api/score',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(rec)});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok) throw new Error(j.error||('오류 '+r.status));
+    box.className='saved ok'; box.textContent=`✅ ${meLabel(rec)} — 기록을 선생님께 보냈어요.`;
+  }catch(e){
+    box.className='saved err'; box.innerHTML=`⚠️ 기록을 보내지 못했어요 (${esc(e.message)}) <button>다시 보내기</button>`;
+    box.querySelector('button').onclick=()=>saveScore(rec);
+  }
+}
+
 /* ---------- 게임 ---------- */
 let S=null;
 const QUIZ_TIME=20, ATTACK_TIME=60;
@@ -333,11 +391,13 @@ function makeChoices(ans){
 }
 
 function startGame(mode){
-  S={mode, queue:buildQueue(), idx:0, score:0, streak:0, maxStreak:0, correct:0, asked:0,
+  const me=readMe(); if(!me) return;
+  S={me, mode, queue:buildQueue(), idx:0, score:0, streak:0, maxStreak:0, correct:0, asked:0,
      wrongs:[], total: mode==='quiz'?opt.count:Infinity, time: mode==='quiz'?QUIZ_TIME:ATTACK_TIME,
      timer:null, locked:true, cur:null};
   S.total = Math.min(S.total, S.queue.length);
   show('quiz');
+  $('#q-who').textContent='👤 '+meLabel(me);
   $('#timer').classList.remove('low');
   updateBar();
   nextQ();
@@ -474,6 +534,9 @@ function endGame(){
     rv.querySelectorAll('.rcard').forEach(c=>c.onclick=()=>{ const src=imgCache[s.wrongs[+c.dataset.i].w.id]; if(src) zoom(src); });
   } else rv.innerHTML = answered? '<h3 style="text-align:center">틀린 문제 없음 — 완벽해요! ✨</h3>' : '';
   $('#r-again').onclick=()=>startGame(s.mode);
+  if(answered>0) saveScore(Object.assign({}, s.me, {mode:s.mode, range:opt.range, diff:opt.diff, count:s.mode==='quiz'?s.total:null,
+    score:s.score, correct:s.correct, answered, streak:s.maxStreak}));
+  else { $('#r-saved').className='saved'; $('#r-saved').textContent='푼 문제가 없어서 기록은 보내지 않았어요.'; }
   show('result'); refreshBest();
 }
 function goHome(){ if(S){stopTimer(); S=null;} show('home'); refreshBest(); }
