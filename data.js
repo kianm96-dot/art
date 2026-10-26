@@ -146,7 +146,7 @@ window.ERAS = [
   tips:['여러 시점이 한 화면에','기하학적인 면으로 쪼갬','갈색·회색 위주의 차분한 색'],
   works:[
    {a:'후안 그리스',t:'피카소의 초상',y:'1912',c:'Juan Gris Portrait of Pablo Picasso 1912'},
-   {a:'장 메챙제',t:'티타임',y:'1911',c:'intitle:Metzinger intitle:Tea intitle:Time'},
+   {a:'알베르 글레즈',t:'발코니의 남자',y:'1912',c:'intitle:Gleizes intitle:Balcony'},
    {a:'후안 그리스',t:'체크 무늬 식탁보가 있는 정물',y:'1915',c:'Juan Gris Still Life with Checked Tablecloth 1915'},
    {a:'로베르 들로네',t:'에펠탑',y:'1911',c:'intitle:Delaunay intitle:Eiffel'}
   ]},
