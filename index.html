@@ -137,6 +137,16 @@ h1,h2,h3{font-family:"Gowun Batang",serif;margin:0}
 .lb{position:fixed;inset:0;background:#000e;display:flex;align-items:center;justify-content:center;z-index:50;cursor:zoom-out;padding:20px}
 .lb img{max-width:100%;max-height:100%;object-fit:contain}
 
+/* ---------- 접속 QR ---------- */
+.qr-btn{margin-top:14px;background:transparent;border:1px solid var(--line);color:var(--gold2);border-radius:999px;padding:7px 16px;font-size:14px}
+.qr-btn:hover{border-color:var(--gold)}
+.qr{position:fixed;inset:0;background:#000e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:50;cursor:pointer;padding:20px;text-align:center}
+.qr h2{color:var(--gold2);font-size:clamp(22px,4vw,34px)}
+.qr .code{background:#fff;padding:16px;border-radius:16px;width:min(80vw,62vh,520px);aspect-ratio:1}
+.qr .code img{display:block;width:100%;height:100%;image-rendering:pixelated}
+.qr .url{font-size:clamp(16px,2.6vw,24px);color:var(--ink);word-break:break-all}
+.qr p{margin:0;color:var(--muted);font-size:13px}
+
 footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
 
 @media (min-width:900px){
@@ -162,6 +172,7 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
       <div class="eyebrow">ART HISTORY QUIZ</div>
       <h1>명화 타임머신</h1>
       <p>그림 한 점을 보고, 어느 시대·양식인지 맞혀 보세요!</p>
+      <button class="qr-btn" id="qr-open">📱 접속 QR 코드 보기</button>
     </div>
 
     <div class="me" id="me">
@@ -273,8 +284,15 @@ footer{color:#7d705c;font-size:12px;text-align:center;padding:24px 0 10px}
 </div>
 
 <div class="lb hidden" id="lb"><img alt=""></div>
+<div class="qr hidden" id="qr">
+  <h2>휴대폰 카메라로 찍어서 접속하세요</h2>
+  <div class="code" id="qr-code"></div>
+  <div class="url" id="qr-url"></div>
+  <p>아무 곳이나 누르면 닫혀요</p>
+</div>
 
 <script src="data.js"></script>
+<script src="qrcode.js"></script>
 <script>
 const ERAS = window.ERAS;
 ERAS.forEach((e,i)=>{e.i=i; e.works.forEach((w,j)=>{w.id=e.id+'-'+j; w.era=i;});});
@@ -568,9 +586,21 @@ function zoom(src){ const lb=$('#lb'); lb.querySelector('img').src=src; lb.class
 $('#lb').onclick=()=>$('#lb').classList.add('hidden');
 $('#q-img').onclick=()=>{ if($('#q-img').src) zoom($('#q-img').src); };
 
+/* ---------- 접속 QR (qrcode.js: 사이트 안에서 바로 그림) ---------- */
+$('#qr-open').onclick=()=>{
+  const url=location.origin+'/';
+  if(!$('#qr-code').firstChild){
+    const q=qrcode(0,'M'); q.addData(url); q.make();
+    $('#qr-code').innerHTML=q.createImgTag(10,0,'접속 QR 코드');
+    $('#qr-url').textContent=url;
+  }
+  $('#qr').classList.remove('hidden');
+};
+$('#qr').onclick=()=>$('#qr').classList.add('hidden');
+
 /* ---------- 키보드 ---------- */
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') $('#lb').classList.add('hidden');
+  if(e.key==='Escape'){ $('#lb').classList.add('hidden'); $('#qr').classList.add('hidden'); }
   if($('#quiz').classList.contains('hidden')) return;
   if(/^[1-4]$/.test(e.key)){ const b=document.querySelectorAll('.choice')[+e.key-1]; if(b&&!b.disabled) b.click(); }
   if(e.key==='Enter'){ const n=$('#nextBtn'); if(n && !$('#fb').classList.contains('hidden')) { e.preventDefault(); n.click(); } }
